@@ -120,6 +120,8 @@
 const express = require("express");
 const router = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+console.log("🔑 Stripe key loaded?", !!process.env.STRIPE_SECRET_KEY);
 const { Donation } = require("../models");
 
 router.post("/", async (req, res) => {
