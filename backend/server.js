@@ -140,7 +140,6 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const https = require("https");
 const { Sequelize } = require("sequelize");
 
 const app = express();
@@ -148,27 +147,8 @@ const PORT = process.env.PORT || 5000;
 
 const { DATABASE_URL = "", NODE_ENV = "development" } = process.env;
 
-/* ---------- Neon Wake-Up Helper ---------- */
-function wakeNeon(urlString) {
-  try {
-    const u = new URL(urlString);
-    if (!/neon\.tech$/i.test(u.hostname)) return;
-    const opts = {
-      method: "GET",
-      hostname: u.hostname,
-      path: "/",
-      timeout: 3000,
-    };
-    const req = https.request(opts, () => {});
-    req.on("error", () => {});
-    req.on("timeout", () => req.destroy());
-    req.end();
-  } catch {}
-}
-
 /* ---------- Database Connection ---------- */
-const needsSSL =
-  NODE_ENV === "production" || /neon\.tech/i.test(DATABASE_URL);
+const needsSSL = NODE_ENV === "production";
 
 const sequelize = new Sequelize(DATABASE_URL, {
   dialect: "postgres",
@@ -193,13 +173,10 @@ const sequelize = new Sequelize(DATABASE_URL, {
 
 /* ---------- Initialize Database ---------- */
 async function initDatabase() {
-  wakeNeon(DATABASE_URL);
-  console.log("🌙 Waking Neon compute if suspended...");
-
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
       await sequelize.authenticate();
-      console.log("✅ Connected to Neon PostgreSQL");
+      console.log("✅ Connected to PostgreSQL database (Render)");
       return;
     } catch (err) {
       console.log(`⏳ DB connection attempt ${attempt} failed...`);
@@ -211,12 +188,6 @@ async function initDatabase() {
     }
   }
 }
-
-/* ---------- Auto Keep-Alive (every 4 minutes) ---------- */
-setInterval(() => {
-  wakeNeon(DATABASE_URL);
-  console.log("💤 Keep-alive ping sent to Neon compute.");
-}, 4 * 60 * 1000);
 
 /* ---------- Middleware ---------- */
 const allowedOrigins = new Set([
