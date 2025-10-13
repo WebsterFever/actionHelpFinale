@@ -233,15 +233,22 @@ router.post("/", async (req, res) => {
     console.log("✅ Donation processed:", paymentIntent.id);
     res.status(200).json({ success: true, id: paymentIntent.id });
   } catch (err) {
-    console.error("❌ Stripe error:", err.message);
+    console.error("❌ Stripe error full object:", err);
     if (err.raw) console.error("🔍 Stripe details:", err.raw);
+
+    // if Stripe already processed a charge, return success
+    if (err.payment_intent && err.payment_intent.status === "succeeded") {
+      console.log("✅ Payment succeeded on Stripe but response failed earlier");
+      return res.status(200).json({ success: true, id: err.payment_intent.id });
+    }
+
     res.status(err.statusCode || 400).json({
       success: false,
-      error: err.message,
-      type: err.type || "StripeError",
-      raw: err.raw || null,
+      error: err.message || "Unknown Stripe error",
+      raw: err.raw || err,
     });
   }
+
 
 });
 
