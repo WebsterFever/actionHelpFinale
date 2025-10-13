@@ -73,7 +73,7 @@
 
 //     // ✅ One-time Payment (unchanged)
 //     const paymentIntent = await stripe.paymentIntents.create({
-      
+
 //       amount: parseInt(amount) * 100,
 //       currency: "usd",
 //       payment_method: paymentMethodId,
@@ -199,17 +199,17 @@ router.post("/", async (req, res) => {
     }
 
     // ✅ One-time payment
- // ✅ One-time payment
-const paymentIntent = await stripe.paymentIntents.create({
-  amount: numericAmount * 100,
-  currency: "usd",
-  payment_method: paymentMethodId,
-  receipt_email: email,
-  confirm: true,
-  description: `One-time donation from ${firstName} ${lastName}`,
-  payment_method_types: ["card"], // 👈 Force card only — safest and simplest
-  expand: ["charges", "payment_method"],
-});
+    // ✅ One-time payment
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: numericAmount * 100,
+      currency: "usd",
+      payment_method: paymentMethodId,
+      receipt_email: email,
+      confirm: true,
+      description: `One-time donation from ${firstName} ${lastName}`,
+      payment_method_types: ["card"], // 👈 Force card only — safest and simplest
+      expand: ["charges", "payment_method"],
+    });
 
 
 
@@ -239,8 +239,10 @@ const paymentIntent = await stripe.paymentIntents.create({
       success: false,
       error: err.message,
       type: err.type || "StripeError",
+      raw: err.raw || null,
     });
   }
+
 });
 
 module.exports = router;
