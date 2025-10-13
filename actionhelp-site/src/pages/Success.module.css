@@ -1,0 +1,66 @@
+.successContainer {
+  text-align: center;
+  padding: 40px 20px;
+  margin: 120px auto;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background-color: var(--background); /* Use a CSS variable or fallback */
+  color: var(--text); /* Ensure readable text */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: green;
+  margin-bottom: 10px;
+}
+
+.message {
+  font-size: 1.2rem;
+  margin: 20px 0 30px;
+  line-height: 1.6;
+}
+
+.homeBtn {
+  text-decoration: none;
+  background: #007bff;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.homeBtn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .successContainer {
+    padding: 30px 16px;
+    margin-top: 80px;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .message {
+    font-size: 1rem;
+    margin: 16px 0 24px;
+  }
+
+  .homeBtn {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 320px;
+  }
+}

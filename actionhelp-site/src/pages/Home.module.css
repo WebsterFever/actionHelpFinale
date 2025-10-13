@@ -1,0 +1,4325 @@
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+/* ===== Tokens ===== */
+:root {
+  --container-max: 1200px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, .08);
+  --shadow-md: 0 8px 22px rgba(0, 0, 0, .12);
+  --header-h: 120px;
+  --hero-push: clamp(24px, 6vw, 64px);
+}
+
+/* ===== Layout ===== */
+.home {
+  background: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  padding-top: calc(var(--header-h) + 8px);
+  overflow-x: hidden;
+}
+
+.homeContainer {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: clamp(12px, 3vw, 24px);
+  box-sizing: border-box;
+}
+
+.donateBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #e11d48;
+  color: #fff;
+  padding: .7rem 1rem;
+  text-align: center;
+  font-weight: 700;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+  cursor: pointer;
+}
+
+/* ===== Hero ===== */
+.hero {
+  background: var(--background);
+  padding: clamp(16px, 3vw, 32px) 0;
+  padding-top: 170px;
+}
+
+.heroMainContent {
+  display: flex;
+  gap: clamp(16px, 3vw, 28px);
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: clamp(16px, 3vw, 24px);
+ 
+
+}
+
+.heroTextBlock {
+  min-width: 280px;
+  flex: 1;
+}
+
+.wel {
+  font-family: 'Righteous', system-ui, sans-serif;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: .5px;
+  margin: 0 0 .75rem;
+  animation: colorCycle 12s ease-in-out infinite;
+  margin-top: 100px;
+
+  
+ 
+}
+
+@keyframes colorCycle {
+  0% {
+    color: #e74c3c
+  }
+
+  25% {
+    color: #f39c12
+  }
+
+  50% {
+    color: #27ae60
+  }
+
+  75% {
+    color: #2980b9
+  }
+
+  100% {
+    color: #8e44ad
+  }
+}
+
+.heroTextBlock p {
+  margin: 0 0 1.1rem;
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  line-height: 1.6;
+}
+
+.heroImage {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+
+}
+
+/* Extra top space only for the hero text + image */
+.heroMainContent .heroTextBlock,
+.heroMainContent .heroImage {
+  margin-top: var(--hero-push);
+}
+
+/* ===== Testimonials ===== */
+.testimonials {
+  padding: clamp(20px, 4vw, 40px) 0 0;
+}
+
+/* ===== About & Mission ===== */
+.aboutMission {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: clamp(16px, 3vw, 28px);
+  padding: clamp(24px, 5vw, 48px) 0;
+}
+
+.about,
+.mission {
+  background: var(--card);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: clamp(16px, 3vw, 24px);
+}
+
+.subTitle {
+  font-size: .8rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: .6px;
+  margin: 0 0 .35rem;
+}
+
+.about h2,
+.mission h2 {
+  margin: 0 0 .5rem;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+}
+
+.about p,
+.mission p {
+  margin: 0;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.readMore {
+  margin-top: .9rem;
+  background: none;
+  border: 0;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.readMore:hover {
+  opacity: .85;
+}
+
+/* Anchor offset */
+.anchorFix {
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+/* ===== Services ===== */
+.services {
+  padding: clamp(24px, 5vw, 56px) 0;
+}
+
+.ser {
+  text-align: center;
+  margin-bottom: clamp(12px, 2vw, 20px);
+}
+
+.serviceWrapper {
+  position: relative;
+  overflow-x: auto;
+  /* horizontal scroll enabled */
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  scrollbar-width: thin;
+}
+
+/* WebKit scrollbars */
+.serviceWrapper::-webkit-scrollbar {
+  height: 10px;
+}
+
+.serviceWrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.serviceWrapper::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .3);
+  border-radius: 8px;
+}
+
+.serviceWrapper:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .5);
+}
+
+/* Auto-scroll content */
+.serviceScroller {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  /* content wider than wrapper */
+  padding-bottom: 8px;
+  animation: scrollLoop 40s linear infinite;
+}
+
+@keyframes scrollLoop {
+  from {
+    transform: translateX(0)
+  }
+
+  to {
+    transform: translateX(-50%)
+  }
+}
+
+/* Manual scroll mode */
+.manualScroll {
+  animation: none !important;
+  overflow-x: auto !important;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  /* Firefox hide */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+.manualScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.manualScroll .serviceScroller {
+  animation: none !important;
+}
+
+/* ===== Flip Cards ===== */
+.cardContainer {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  margin: .75rem;
+}
+
+.flipCard {
+  width: 260px;
+  height: 300px;
+  position: relative;
+  flex-shrink: 0;
+  margin: 0 12px;
+}
+
+.flipCardInner {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .8s;
+}
+
+.flipCard:hover .flipCardInner {
+  transform: rotateY(180deg);
+}
+
+.flipCardFront,
+.flipCardBack {
+  position: absolute;
+  inset: 0;
+  background: var(--card);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+  backface-visibility: hidden;
+}
+
+.flipCardFront img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.flipCardBack {
+  transform: rotateY(180deg);
+}
+
+/* ===== Sticky Scrollbar ===== */
+.stickyBar {
+  height: 10px;
+  background: rgba(0, 0, 0, .08);
+  border-radius: 999px;
+  margin: 12px 16px 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  user-select: none;
+  touch-action: none;
+  cursor: pointer;
+}
+
+.showBar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.stickyThumb {
+  height: 100%;
+  background: var(--primary);
+  border-radius: inherit;
+  transform: translateX(0);
+  touch-action: none;
+  cursor: grab;
+}
+
+.stickyThumb:active {
+  cursor: grabbing;
+}
+
+/* ===== Modal ===== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .75);
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.modalContent {
+  background: var(--background);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  width: min(800px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-md);
+  padding: clamp(16px, 3vw, 24px);
+  animation: scaleIn .25s ease;
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+    /* start slightly smaller */
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+    /* overshoot a bit for a natural effect */
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    /* final normal size */
+  }
+}
+
+.stickyBar {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.showBar {
+  opacity: 1;
+}
+
+/* Layout */
+.home {
+  background: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  padding-top: calc(var(--header-h) + 8px);
+  overflow-x: hidden;
+}
+
+.homeContainer {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(12px, 3vw, 24px);
+}
+
+.donateBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #e11d48;
+  color: #fff;
+  padding: .7rem 1rem;
+  text-align: center;
+  font-weight: 700;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+  cursor: pointer;
+}
+
+
+
+/* Services */
+.services {
+  padding: clamp(24px, 5vw, 56px) 0;
+}
+
+.ser {
+  text-align: center;
+  margin-bottom: clamp(12px, 2vw, 20px);
+}
+
+.serviceWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.hiddenScroll {
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+.hiddenScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.manualScroll {
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.manualScroll::-webkit-scrollbar {
+  height: 10px;
+}
+
+.manualScroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.manualScroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .35);
+  border-radius: 8px;
+}
+
+.manualScroll:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .5);
+}
+
+/* Scrollers */
+.scroller {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  padding-bottom: 8px;
+}
+
+.scrollerMarquee {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  padding-bottom: 8px;
+  animation: marquee 30s linear infinite;
+}
+
+.scrollerMarquee:hover {
+  animation-play-state: paused;
+}
+
+/* pause on hover */
+@keyframes marquee {
+  from {
+    transform: translateX(0)
+  }
+
+  to {
+    transform: translateX(-50%)
+  }
+}
+
+
+
+/* Thin custom bar (only in manual mode + overflow) */
+.stickyBar {
+  height: 10px;
+  background: rgba(0, 0, 0, .08);
+  border-radius: 999px;
+  margin: 12px 16px 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  user-select: none;
+  touch-action: none;
+  cursor: pointer;
+}
+
+.showBar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.stickyThumb {
+  height: 100%;
+  background: var(--primary);
+  border-radius: inherit;
+  transform: translateX(0);
+  touch-action: none;
+  cursor: grab;
+}
+
+.stickyThumb:active {
+  cursor: grabbing;
+}
+
+/* ===== Modal Styling (mobile-first, clean & modern) ===== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 18, 25, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: grid;
+  place-items: end;
+  /* mobile: slide-up feel */
+  padding: 0.75rem;
+  z-index: 10000;
+}
+
+@media (min-width: 640px) {
+  .modalOverlay {
+    place-items: center;
+    /* center on larger screens */
+    padding: 1.25rem;
+  }
+}
+
+@keyframes modalPop {
+  0% {
+    transform: translateY(16px) scale(.98);
+    opacity: 0;
+  }
+
+  60% {
+    transform: translateY(0) scale(1.01);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modalShell {
+  width: 100%;
+  max-width: 840px;
+  background: var(--background, #fff);
+  color: var(--text, #111827);
+  border-radius: 18px;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, .2),
+    0 2px 10px rgba(0, 0, 0, .08);
+  animation: modalPop .24s ease both;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header with close button */
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, .06);
+  background: linear-gradient(180deg, rgba(0, 0, 0, .02), transparent);
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.modalClose {
+  appearance: none;
+  border: none;
+  background: rgba(0, 0, 0, .06);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  line-height: 1;
+  font-size: 22px;
+  font-weight: 700;
+  color: inherit;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform .12s ease, background .12s ease, opacity .2s ease;
+}
+
+.modalClose:hover {
+  background: rgba(0, 0, 0, .1);
+  transform: scale(1.05);
+}
+
+.modalClose:active {
+  transform: scale(.95);
+}
+
+.modalBody {
+  flex: 1;
+  max-height: min(72vh, 720px);
+  overflow-y: auto;
+  padding: 14px 16px 16px;
+  font-size: .95rem;
+  line-height: 1.55;
+}
+
+/* Optional: subtle scrollbars */
+.modalBody::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modalBody::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .15);
+  border-radius: 999px;
+}
+
+.modalBody:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .28);
+}
+
+/* Leadership list inside modal */
+.leadershipList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 520px) {
+  .leadershipList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .leadershipList {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+.leadershipItem {
+  background: var(--card, #fff);
+  border: 1px solid rgba(0, 0, 0, .06);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .06);
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.leaderImg {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .12);
+}
+
+.leaderName {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.leaderRole {
+  margin: 2px 0 4px;
+  font-size: .85rem;
+  color: var(--primary, #2563eb);
+  font-weight: 700;
+}
+
+.leaderText {
+  margin: 0;
+  font-size: .9rem;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, .72);
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .modalShell {
+    background: #0f1219;
+    color: #e5e7eb;
+  }
+
+  .modalHeader {
+    border-bottom-color: rgba(255, 255, 255, .08);
+  }
+
+  .modalClose {
+    background: rgba(255, 255, 255, .06);
+  }
+
+  .modalClose:hover {
+    background: rgba(255, 255, 255, .12);
+  }
+
+  .leadershipItem {
+    border-color: rgba(255, 255, 255, .08);
+  }
+
+  .leaderText {
+    color: rgba(229, 231, 235, .8);
+  }
+}
+
+/* Fix text contrast inside leadership cards */
+.leaderName {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text, #111827);
+  /* force dark text in light mode */
+}
+
+.leaderRole {
+  margin: 2px 0 4px;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--primary, #2563eb);
+  /* keep accent color */
+}
+
+.leaderText {
+  margin: 0;
+  font-size: .9rem;
+  line-height: 1.55;
+  color: var(--text, #111827);
+  /* strong text */
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .leaderName {
+    color: #f9fafb;
+  }
+
+  /* bright white */
+  .leaderRole {
+    color: #60a5fa;
+  }
+
+  /* light blue accent */
+  .leaderText {
+    color: #e5e7eb;
+  }
+
+  /* clear light gray */
+}
+
+/* ===== Fix leadership card readability (strong contrast, no truncation) ===== */
+
+/* Ensure the card itself uses a solid background and inherits strong text color */
+.leadershipItem {
+  background: #ffffff;
+  /* light theme */
+  color: #0f172a;
+  /* slate-900 */
+  mix-blend-mode: normal;
+  /* avoid blending that fades text */
+}
+
+/* Dark theme variant */
+@media (prefers-color-scheme: dark) {
+  .leadershipItem {
+    background: #161a22;
+    color: #f8fafc;
+  }
+}
+
+/* Make sure ALL text in the card is full opacity and inherits the card color */
+.leadershipItem * {
+  color: inherit !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* Headings & roles – readable weights */
+.leaderName {
+  font-weight: 800;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.leaderRole {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin: 2px 0 8px;
+}
+
+/* Paragraph text – slightly larger and clear */
+.leaderText {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---- Remove any clamping/ellipsis coming from global styles ---- */
+.leaderName,
+.leaderRole,
+.leaderText {
+  overflow: visible !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  -webkit-box-orient: initial !important;
+}
+
+/* Optional: give the image column a little separation */
+.leadershipItem {
+  grid-template-columns: 80px 1fr;
+  gap: 14px;
+}
+
+.leaderImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* If your global theme lowers contrast inside modals, this enforces clarity */
+.modalShell {
+  color: inherit;
+}
+
+.modalBody {
+  color: inherit;
+}
+
+/* Bigger cards + proper layout + no truncation */
+.leadershipItem {
+  grid-template-columns: 88px 1fr;
+  /* img | content */
+  gap: 16px;
+  padding: 16px 18px;
+  min-height: 180px;
+  border-radius: 16px;
+}
+
+/* Larger image */
+.leaderImg {
+  width: 88px;
+  height: 88px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Put all text in the right column (under the name) */
+.leaderName,
+.leaderRole,
+.leaderText {
+  grid-column: 2 / 3 !important;
+  /* force into content column */
+}
+
+/* Typographic polish */
+.leaderName {
+  margin: 0 0 2px;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.leaderRole {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary, #2563eb);
+}
+
+.leaderText {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+/* Remove any ellipsis/clamping from global styles */
+.leadershipItem p,
+.leaderName,
+.leaderRole,
+.leaderText {
+  overflow: visible !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  display: block !important;
+}
+
+/* (Optional) a bit more vertical space on wider screens */
+@media (min-width: 900px) {
+  .leadershipItem {
+    min-height: 200px;
+    padding: 18px 20px;
+  }
+}
+
+/* ========== Modal: light, colorful, mobile-first ========== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 22, 30, .35);
+  backdrop-filter: blur(8px);
+  display: grid;
+  place-items: end;
+  padding: .75rem;
+  z-index: 10000;
+}
+
+@media (min-width:640px) {
+  .modalOverlay {
+    place-items: center;
+    padding: 1.25rem;
+  }
+}
+
+@keyframes modalFloat {
+  0% {
+    transform: translateY(18px) scale(.98);
+    opacity: 0
+  }
+
+  60% {
+    transform: translateY(0) scale(1.01);
+    opacity: 1
+  }
+
+  100% {
+    transform: translateY(0) scale(1)
+  }
+}
+
+.modalShell {
+  width: 100%;
+  max-width: 980px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+  border: 1px solid rgba(30, 41, 59, .10);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(2, 6, 23, .20);
+  overflow: hidden;
+  animation: modalFloat .22s ease-out both;
+  color: #0f172a;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(2, 6, 23, .06);
+  background: linear-gradient(180deg, rgba(2, 6, 23, .02), transparent);
+}
+
+.modalTitle {
+  margin: 0;
+  font-weight: 900;
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  letter-spacing: .2px;
+}
+
+.modalClose {
+  border: none;
+  background: rgba(2, 6, 23, .06);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform .12s, background .12s;
+}
+
+.modalClose:hover {
+  background: rgba(2, 6, 23, .12);
+  transform: scale(1.05);
+}
+
+.modalBody {
+  max-height: min(76vh, 780px);
+  overflow: auto;
+  padding: 16px 18px;
+}
+
+/* ========== Leadership grid ========== */
+.leadershipList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width:720px) {
+  .leadershipList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Card base */
+.leadershipItem {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--card-border, rgba(2, 6, 23, .08));
+  box-shadow: 0 6px 18px rgba(2, 6, 23, .06);
+}
+
+.leaderImg {
+  width: 88px;
+  height: 88px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Name + role together (right column) */
+.leaderName,
+.leaderRole,
+.leaderText {
+  grid-column: 2 / 3;
+}
+
+.leaderName {
+  margin: 0;
+  font-weight: 900;
+  font-size: 1.08rem;
+  color: #0b1220;
+}
+
+.leaderRole {
+  margin: 2px 0 10px;
+  font-weight: 800;
+  font-size: .95rem;
+  color: var(--accent, #2563eb);
+}
+
+.leaderText {
+  margin: 0;
+  font-size: .98rem;
+  line-height: 1.6;
+  color: #0f172a;
+}
+
+/* Never truncate */
+.leaderName,
+.leaderRole,
+.leaderText {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+}
+
+/* ========== Per-person accent colors (nth-child) ========== */
+/* Ronald */
+.leadershipList>li:nth-child(1) {
+  --accent: #2563eb;
+  --card-bg: linear-gradient(180deg, #eef5ff 0%, #ffffff 100%);
+  --card-border: rgba(37, 99, 235, .25);
+}
+
+/* Mivida */
+.leadershipList>li:nth-child(2) {
+  --accent: #16a34a;
+  --card-bg: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%);
+  --card-border: rgba(22, 163, 74, .22);
+}
+
+/* Marie Ange */
+.leadershipList>li:nth-child(3) {
+  --accent: #e11d48;
+  --card-bg: linear-gradient(180deg, #fff1f2 0%, #ffffff 100%);
+  --card-border: rgba(225, 29, 72, .22);
+}
+
+/* Gelin */
+.leadershipList>li:nth-child(4) {
+  --accent: #a855f7;
+  --card-bg: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%);
+  --card-border: rgba(168, 85, 247, .22);
+}
+
+/* Dark mode harmony */
+@media (prefers-color-scheme: dark) {
+  .modalShell {
+    background: linear-gradient(180deg, #0f1220 0%, #0b1020 100%);
+    color: #e5e7eb;
+  }
+
+  .modalHeader {
+    border-bottom-color: rgba(255, 255, 255, .08);
+  }
+
+  .modalClose {
+    background: rgba(255, 255, 255, .06);
+  }
+
+  .modalClose:hover {
+    background: rgba(255, 255, 255, .12);
+  }
+
+  .leaderName {
+    color: #f9fafb;
+  }
+
+  .leaderText {
+    color: #e5e7eb;
+  }
+
+  .leadershipList>li:nth-child(1) {
+    --card-bg: linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+    --card-border: rgba(37, 99, 235, .35);
+  }
+
+  .leadershipList>li:nth-child(2) {
+    --card-bg: linear-gradient(180deg, #0f1a15 0%, #0b1412 100%);
+    --card-border: rgba(22, 163, 74, .35);
+  }
+
+  .leadershipList>li:nth-child(3) {
+    --card-bg: linear-gradient(180deg, #1a0f14 0%, #150c11 100%);
+    --card-border: rgba(225, 29, 72, .35);
+  }
+
+  .leadershipList>li:nth-child(4) {
+    --card-bg: linear-gradient(180deg, #160f1f 0%, #130d1a 100%);
+    --card-border: rgba(168, 85, 247, .35);
+  }
+}
+
+/* Leadership cards: name + role stacked together */
+.leaderName {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #fff;
+}
+
+.leaderRole {
+  margin: 2px 0 10px;
+  /* closer to the name */
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent, #38bdf8);
+}
+
+/* Adjust card layout so name+role stay grouped */
+.leadershipItem {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  grid-template-rows: auto auto 1fr;
+  /* image + name/role + text */
+  gap: 8px 16px;
+  align-items: start;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--card-border, rgba(2, 6, 23, .08));
+  box-shadow: 0 6px 18px rgba(2, 6, 23, .06);
+}
+
+.leaderImg {
+  grid-row: 1 / span 2;
+  /* occupy same rows as name+role */
+  grid-column: 1 / 2;
+  width: 88px;
+  height: 88px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.leaderName,
+.leaderRole {
+  grid-column: 2 / 3;
+}
+
+.leaderText {
+  grid-column: 1 / -1;
+  /* span full width under everything */
+  margin-top: 6px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #e5e7eb;
+}
+
+/* === OVERRIDES: paste below everything else ===================== */
+
+/* Hide the small duplicate label (ABOUT US / MISSION & VISION) on all sizes */
+.subTitle {
+  display: none !important;
+}
+
+/* Mobile-first hero: stack, text first, image second */
+@media (max-width: 767px) {
+  .heroMainContent {
+    flex-direction: column;
+    /* stack */
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .heroTextBlock {
+    order: 1;
+  }
+
+  /* text first */
+  .heroImage {
+    order: 2;
+    /* image under text */
+    width: 100%;
+    max-width: none;
+    margin-top: 6px;
+  }
+
+  /* About & Mission: single column with Mission under About */
+  .aboutMission {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* 1 column */
+    gap: 16px;
+    padding-top: 20px;
+  }
+}
+
+/* Tablet/desktop keep your two-column layout for About & Mission */
+@media (min-width: 768px) {
+  .aboutMission {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: clamp(16px, 3vw, 28px);
+  }
+}
+
+/* Small polish: ensure hero title doesn't crowd on tiny screens */
+@media (max-width: 480px) {
+  .wel {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+
+  .heroTextBlock p {
+    font-size: 1rem;
+  }
+}
+
+/* Center the whole hero (stacked, both centered) */
+@media (min-width: 1024px) {
+  .heroMainContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* Use the existing <img class="heroImage"> as a background layer */
+
+.heroMainContent {
+  /* minimal: create a positioning context */
+  position: relative;
+}
+
+
+.heroTextBlock {
+  /* keep text above the image */
+  position: relative;
+  z-index: 1;
+}
+
+.heroMainContent {
+  position: relative;
+  /* background positioning context */
+  overflow: hidden;
+  /* hide any overflow */
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  /* top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* make it fully cover */
+  border-radius: var(--radius-md);
+  /* keep rounded corners */
+  z-index: 0;
+  /* push it behind text */
+  filter: brightness(.6);
+  /* darken for readability */
+}
+
+.heroTextBlock {
+  position: relative;
+  z-index: 1;
+  /* text above background */
+}
+
+/* === Make the <img class="heroImage"> cover the entire .heroMainContent === */
+/* (Paste this at the end of Home.module.css so it overrides earlier rules) */
+
+.heroMainContent {
+  position: relative;
+  /* context for absolutely-positioned img */
+  overflow: hidden;
+  /* hide overflow corners */
+  min-height: clamp(320px, 52vh, 560px);
+  /* give the hero a nice tall area */
+  border-radius: var(--radius-md);
+  /* keep same rounded corners */
+}
+
+/* Use the existing <img> as a full-background layer */
+.heroImage {
+  position: absolute;
+  inset: 0;
+  /* top:0; right:0; bottom:0; left:0 */
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  /* override earlier margin-top push */
+  object-fit: cover;
+  /* fully cover the container */
+  border-radius: inherit;
+  /* match container corners */
+  z-index: 0;
+  /* sit behind text */
+  filter: brightness(.65);
+  /* improve text contrast */
+}
+
+/* Ensure text sits above and is centered nicely */
+.heroTextBlock {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-inline: auto;
+}
+
+/* === Mobile: remove the big blank space above the hero === */
+@media (max-width: 767px) {
+  .hero {
+    padding-top: 8px !important;
+    /* was 170px */
+  }
+
+  /* kill any extra top offset inside the hero */
+  .heroMainContent {
+    margin-top: 0 !important;
+  }
+
+  .heroMainContent .heroTextBlock,
+  .heroMainContent .heroImage {
+    margin-top: 0 !important;
+  }
+}
+
+/* On mobile, push the hero text further down */
+
+/* --- Mobile: add margin-top to the heroTextBlock --- */
+/* paste at the END of Home.module.css */
+
+@media (max-width: 767px) {
+  .heroMainContent {
+    margin-top: 20px !important;
+    /* adjust value until text is visible */
+    text-align: center;
+  }
+
+
+
+  .wel {
+    font-size: 1.8rem;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    
+   
+  }
+}
+
+/* === Hero Overlay + Clear Text === */
+.heroMainContent {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(320px, 52vh, 560px);
+  border-radius: var(--radius-md);
+}
+
+/* Dark overlay on top of the hero image */
+.heroMainContent::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  /* adjust opacity 0.3–0.6 */
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* Hero image behind everything */
+
+
+/* Text block always above overlay */
+.heroTextBlock {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-inline: auto;
+}
+
+/* Hero heading */
+
+
+/* Hero paragraph */
+.heroTextBlock p {
+  color: #f9fafb;
+  /* off-white */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  font-size: 190%;
+  font-weight: bold;
+}
+
+@media (max-width: 767px) {
+  .heroMainContent {
+    margin-top: 20px !important;
+    /* adjust value until text is visible */
+    text-align: center;
+  }
+
+  .heroTextBlock p {
+    color: #f9fafb;
+    /* off-white */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    margin: 0;
+    font-size: 130%;
+  }
+
+
+  .wel {
+    font-size: 1.8rem;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    margin-top: 180px;
+   font-weight: bold;
+  }
+}
+
+/* ==== Desktop: show full heads in hero image ==== */
+/* Paste at the END of your CSS so it overrides earlier rules */
+
+@media (min-width: 1024px) {
+  .heroMainContent{
+    min-height: 70vh;                 /* taller hero so the heads fit */
+  }
+  .heroImage{
+    object-position: center 10%;       /* bias crop upward to keep heads visible */
+  }
+}
+
+/* Ultra-wide screens: nudge a bit more */
+@media (min-width: 1440px) {
+  .heroImage{
+    object-position: center 5%;
+  }
+}
+/* ===== Leadership (theme-aware) ===== */
+.leadershipSection {
+  padding: clamp(20px, 4vw, 40px) 0;
+}
+
+.sectionTitle {
+  margin: 0 0 12px;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  font-weight: 800;
+  color: var(--text);
+}
+
+.leadershipList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .leadershipList { grid-template-columns: 1fr 1fr; }
+}
+
+/* Card */
+.leadershipItem {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 14px 16px;
+  align-items: start;
+  padding: 16px 18px;
+  border-radius: 16px;
+
+  /* THEME HOOKS */
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--card-border, rgba(0,0,0,.08));
+  box-shadow: var(--shadow-sm);
+}
+
+.leaderImg {
+  grid-row: 1 / span 2;
+  grid-column: 1 / 2;
+  width: 88px;
+  height: 88px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 1px 6px rgba(0,0,0,.12);
+}
+
+.leaderName,
+.leaderRole,
+.leaderText {
+  grid-column: 2 / 3;
+  color: inherit;            /* inherit theme text */
+}
+
+.leaderName {
+  margin: 0 0 2px;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.leaderRole {
+  margin: 0 0 10px;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--accent, var(--primary));  /* uses per-card accent or primary */
+}
+
+.leaderText {
+  grid-column: 1 / -1;       /* full width under everything */
+  font-size: .98rem;
+  line-height: 1.6;
+  margin: 6px 0 0;
+  opacity: .92;              /* subtle, still theme-aware */
+}
+
+/* Never truncate */
+.leaderName, .leaderRole, .leaderText {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+}
+
+/* Optional per-card accents (keeps working in both themes) */
+.leadershipList > li:nth-child(1) { --accent: #2563eb; }
+.leadershipList > li:nth-child(2) { --accent: #16a34a; }
+.leadershipList > li:nth-child(3) { --accent: #e11d48; }
+.leadershipList > li:nth-child(4) { --accent: #a855f7; }
+
+/* Manual dark mode via data-theme="dark" */
+:root[data-theme="dark"] .leadershipItem {
+  border-color: rgba(255,255,255,.10);
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+}
+:root[data-theme="dark"] .leaderText {
+  opacity: .95;
+}
+
+/* OS-level dark preference */
+@media (prefers-color-scheme: dark) {
+  .leadershipItem {
+    border-color: rgba(255,255,255,.10);
+    box-shadow: 0 6px 18px rgba(0,0,0,.35);
+  }
+  .leaderText { opacity: .95; }
+}
+.orbitWrap {
+  --card-w: clamp(220px, 35vmin, 280px);
+  --card-bg: var(--card);
+  width: 100%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  min-height: 260px; /* adjust if needed */
+}
+
+/* remove the circular orbit entirely */
+
+/* container for cards stacked at center */
+.orbitItem {
+  width: var(--card-w);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* the card that fades in/out in sequence */
+.orbitCard {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid color-mix(in oklab, var(--text), transparent 85%);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: 14px 16px;
+  text-align: center;
+
+  will-change: opacity, transform;
+  opacity: 0;
+  transform: scale(.9);
+  animation: orbitPop 9s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 3s); /* 3s stagger per item */
+}
+
+.orbitCard h3 {
+  margin: 0 0 6px;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-weight: 800;
+  color: var(--primary);
+}
+.orbitCard p {
+  margin: 0;
+  line-height: 1.55;
+  font-size: .95rem;
+}
+
+/* one card visible ~3s, then fades, next takes over */
+@keyframes orbitPop {
+  0%   { opacity: 0; transform: scale(.9); }
+  10%  { opacity: 1; transform: scale(1); }
+  30%  { opacity: 1; transform: scale(1); }
+  40%  { opacity: 0; transform: scale(.95); }
+  100% { opacity: 0; transform: scale(.9); }
+}
+
+/* reduced motion: just fade */
+@media (prefers-reduced-motion: reduce) {
+  .orbitCard {
+    animation: fadeInOut 9s ease-in-out infinite;
+  }
+  @keyframes fadeInOut {
+    0%, 10%, 30% { opacity: 1; }
+    40%, 100%    { opacity: 0; }
+  }
+}
+
+/* mobile tweak */
+@media (max-width: 640px) {
+  .orbitWrap {
+    --card-w: min(92vw, 320px);
+    min-height: 220px;
+  }
+}
+.orbitWrap {
+  --card-w: clamp(220px, 35vmin, 280px);
+  --card-bg: var(--card);
+  position: relative;             /* <-- needed so absolute children are positioned */
+  width: 100%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  min-height: 260px; /* adjust if needed */
+}
+
+/* container for cards stacked at center */
+.orbitItem {
+  width: var(--card-w);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* the card that fades in/out in sequence */
+.orbitCard {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid color-mix(in oklab, var(--text), transparent 85%);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: 14px 16px;
+  text-align: center;
+
+  will-change: opacity, transform;
+  opacity: 0;
+  transform: scale(.9);
+  animation: orbitPop 9s ease-in-out infinite;
+  /* we’ll set delays via nth-child below, no inline CSS vars needed */
+}
+
+.orbitCard h3 {
+  margin: 0 0 6px;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-weight: 800;
+  color: var(--primary);
+}
+.orbitCard p {
+  margin: 0;
+  line-height: 1.55;
+  font-size: .95rem;
+}
+
+/* one card visible ~3s, then fades, next takes over */
+@keyframes orbitPop {
+  0%   { opacity: 0; transform: scale(.9); }
+  10%  { opacity: 1; transform: scale(1); }
+  30%  { opacity: 1; transform: scale(1); }
+  40%  { opacity: 0; transform: scale(.95); }
+  100% { opacity: 0; transform: scale(.9); }
+}
+
+/* Stagger without JS/custom properties */
+.orbitWrap .orbitItem:nth-child(1) .orbitCard { animation-delay: 0s; }
+.orbitWrap .orbitItem:nth-child(2) .orbitCard { animation-delay: 3s; }
+.orbitWrap .orbitItem:nth-child(3) .orbitCard { animation-delay: 6s; }
+
+/* reduced motion: just fade */
+@media (prefers-reduced-motion: reduce) {
+  .orbitCard { animation: fadeInOut 9s ease-in-out infinite; }
+  @keyframes fadeInOut {
+    0%, 10%, 30% { opacity: 1; }
+    40%, 100%    { opacity: 0; }
+  }
+}
+
+/* mobile tweak */
+@media (max-width: 640px) {
+  .orbitWrap {
+    --card-w: min(92vw, 320px);
+    min-height: 220px;
+  }
+}
+.orbitWrap {
+  --card-w: clamp(220px, 35vmin, 280px);
+  --card-bg: var(--card);
+  position: relative;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  min-height: 260px; /* adjust if needed */
+}
+
+/* center stack */
+.orbitItem {
+  width: var(--card-w);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* cards */
+.orbitCard {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid color-mix(in oklab, var(--text), transparent 85%);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: 14px 16px;
+  text-align: center;
+
+  will-change: opacity, transform;
+  opacity: 0;
+  transform: scale(.9);
+  animation: orbitPop 15s ease-in-out infinite;
+}
+
+/* card content */
+.orbitCard h3 {
+  margin: 0 0 6px;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-weight: 800;
+  color: var(--primary);
+}
+.orbitCard p {
+  margin: 0;
+  line-height: 1.55;
+  font-size: .95rem;
+}
+
+/* one card visible ~5s, then fades */
+@keyframes orbitPop {
+  0%   { opacity: 0; transform: scale(.9); }
+  5%   { opacity: 1; transform: scale(1); }
+  33%  { opacity: 1; transform: scale(1); }
+  38%  { opacity: 0; transform: scale(.95); }
+  100% { opacity: 0; transform: scale(.9); }
+}
+
+/* stagger delays for 3 cards (15s / 3 = 5s each) */
+.orbitWrap .orbitItem:nth-child(1) .orbitCard { animation-delay: 0s; }
+.orbitWrap .orbitItem:nth-child(2) .orbitCard { animation-delay: 5s; }
+.orbitWrap .orbitItem:nth-child(3) .orbitCard { animation-delay: 10s; }
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .orbitCard { animation: fadeInOut 15s ease-in-out infinite; }
+  @keyframes fadeInOut {
+    0%, 10%, 33% { opacity: 1; }
+    38%, 100%    { opacity: 0; }
+  }
+}
+
+/* mobile tweak */
+@media (max-width: 640px) {
+  .orbitWrap {
+    --card-w: min(92vw, 320px);
+    min-height: 220px;
+  }
+}
+/* --- spacing for the Vision • Purpose • Values loop --- */
+.orbitWrap {
+  /* existing props */
+  --card-w: clamp(220px, 35vmin, 280px);
+  --card-bg: var(--card);
+  position: relative;
+  width: 100%;
+  display: grid;
+  place-items: center;
+
+  /* center + add top/bottom space */
+  margin: clamp(28px, 6vw, 80px) auto;  /* ⬅︎ top/bottom | left/right */
+  min-height: 260px; /* keep if needed */
+}
+
+/* mobile tweak: a bit tighter but still spaced */
+@media (max-width: 640px) {
+  .orbitWrap {
+    --card-w: min(92vw, 320px);
+    min-height: 220px;
+    margin: clamp(18px, 6vw, 32px) auto;
+  }
+}
+/* --- Chatbox fix (paste at the very end) ------------------------ */
+
+/* 1) Stop the hero from clipping floating UI on phones */
+@media (max-width: 767px) {
+  .heroMainContent {
+    overflow: visible !important;
+  }
+}
+
+/* Keep the nice rounded look by clipping only the bg layers.
+   Also make them click-through so they never block the chat. */
+.heroMainContent::before,
+.heroImage {
+  border-radius: var(--radius-md);
+  pointer-events: none;
+}
+
+/* 2) Make sure ANY chat widget floats above everything.
+   Use :global(...) so CSS Modules won't scope these selectors. */
+:global(#chatbot-toggle),
+:global(.chatbotFab),
+:global([data-chatbot]),
+:global([data-chat-toggle]),
+:global([class*="chat"]):not(html):not(body) {
+  position: fixed !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  z-index: 2147483647 !important; /* above your modals/banners */
+  pointer-events: auto !important;
+}
+
+/* If you also have a back-to-top FAB, lift the chat a bit on phones */
+@media (max-width: 767px) {
+  :global(#chatbot-toggle),
+  :global(.chatbotFab),
+  :global([data-chat-toggle]) {
+    bottom: 76px !important;
+  }
+}
+
+/* 3) Important: remove this if you added it earlier — it can break layout
+   and won’t actually solve clipping.
+   .chatToggle, #chatbot-toggle, .chatbotFab { contain: layout style paint; }  */
+/* ───────── Chat widget UI ───────── */
+.chatbotFab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2147483646; /* just under the panel */
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--primary, #2563eb);
+  color: #fff;
+  font-size: 22px;
+  line-height: 52px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+.chatPanel {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2147483647; /* on top of everything */
+  width: min(92vw, 380px);
+  height: min(72vh, 600px);
+  background: var(--card, #fff);
+  color: var(--text, #0f172a);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(2,6,23,.25);
+  overflow: hidden;
+}
+
+.chatClose {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(0,0,0,.06);
+  color: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+}
+.chatClose:hover { background: rgba(0,0,0,.12); }
+
+.chatBody {
+  width: 100%;
+  height: 100%;
+  padding-top: 40px; /* room for close button */
+  overflow: hidden;
+}
+
+/* Avoid overlap with back-to-top on phones */
+@media (max-width: 767px) {
+  .chatbotFab { bottom: 76px; }
+  .chatPanel  { bottom: 76px; width: min(96vw, 420px); height: min(70vh, 560px); }
+}
+
+/* ───────── Back-to-top FAB ───────── */
+.backToTop {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2147483645;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--primary, #2563eb);
+  color: #fff;
+  font-size: 22px;
+  line-height: 48px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+/* If both FABs exist on mobile, keep space */
+@media (max-width: 767px) {
+  .backToTop { bottom: 16px; right: 16px; }
+}
+
+/* ───────── Header: fixed on mobile, NOT fixed on desktop ───────── */
+/* Replace `.siteHeader` with your actual header class or :global selector */
+@media (min-width: 1024px) {
+  :global(.siteHeader), :global(header.header) {
+    position: static !important;  /* remove fixed on desktop */
+  }
+}
+@media (max-width: 1023px) {
+  :global(.siteHeader), :global(header.header) {
+    position: fixed !important;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+  }
+}
+
+/* ───────── Keep chat above other sections (safety) ───────── */
+:global(#chatbot-toggle),
+:global(.chatbotFab),
+:global([data-chatbot]),
+:global([data-chat-toggle]) {
+  position: fixed !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  z-index: 2147483646 !important;
+}
+@media (max-width: 767px) {
+  :global(#chatbot-toggle),
+  :global(.chatbotFab),
+  :global([data-chat-toggle]) {
+    bottom: 76px !important;
+  }
+}
+/* kill custom chat UI we added earlier */
+.chatbotFab,
+.chatPanel { display: none !important; }
+
+/* remove our forced global positioning for chat elements */
+:global(.chatbotFab),
+:global([data-chat-toggle]) { all: unset !important; display: none !important; }
+/* ── Header: NOT fixed ─────────────────────────────────────────── */
+:global(header.header), :global(.siteHeader) {
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  width: 100% !important;
+  border-radius: 0 !important;
+}
+
+/* since header is static, remove the big top offset */
+.home { padding-top: 8px !important; }
+
+/* ── Kill any custom chat UI that could sit under your vendor chat ─ */
+.chatbotFab,
+.chatPanel,
+.chatClose { display: none !important; }
+
+/* keep hero layers click-through so chat close is always clickable */
+.heroMainContent::before,
+.heroImage { pointer-events: none; }
+
+/* ── Back to top styles ────────────────────────────────────────── */
+.backToTop{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1000;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--primary, #2563eb);
+  color: #fff;
+  font-size: 20px;
+  line-height: 48px;
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+.showTop { opacity: 1; pointer-events: auto; }
+/* ——— FULL-BLEED HERO, GLUED TO THE HEADER ——— */
+
+/* kill the big top padding on the hero */
+.hero{ padding-top: 0 !important; }
+
+/* make the hero block span the entire viewport width */
+.heroMainContent{
+  /* break out of the centered container */
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+
+  /* look like a banner glued to the header */
+  border-radius: 0 !important;
+}
+
+/* remove any internal top push inside the hero */
+.heroMainContent .heroTextBlock,
+.heroMainContent .heroImage{ margin-top: 0 !important; }
+
+/* overlay/image should also be edge-to-edge */
+.heroMainContent::before,
+.heroImage{ border-radius: 0 !important; }
+
+/* if your page wrapper added space to clear a fixed header, remove it on desktop */
+@media (min-width:1024px){
+  .home{ padding-top: 0 !important; }
+}
+
+/* MOBILE: header is fixed, so push the hero down by header (+ optional donate) height */
+:root{ --donate-h: 0px; } /* set to your banner height if it's fixed on mobile (e.g. 48px) */
+@media (max-width:1023px){
+  .hero{ padding-top: calc(var(--header-h) + var(--donate-h)) !important; }
+}
+/* Remove default page margin just in case (CSS Modules global) */
+:global(html, body){ margin:0; }
+
+/* Full-bleed hero with no right gap */
+.heroMainContent{
+  /* use dynamic viewport width so scrollbars don't create a sliver */
+  width: 100dvw !important;
+  margin-left:  calc(50% - 50dvw) !important;
+  margin-right: calc(50% - 50dvw) !important;
+
+  border-radius: 0 !important;            /* keep edges flush */
+  box-sizing: border-box;
+}
+
+/* Fallback for browsers without d/vw support */
+@supports not (width: 100dvw){
+  .heroMainContent{
+    width: 100vw !important;
+    margin-left:  calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+  }
+}
+
+/* Make the layers flush too */
+.heroMainContent::before,
+.heroImage{
+  border-radius: 0 !important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+/* ===== Tokens ===== */
+:root {
+  --container-max: 1200px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, .08);
+  --shadow-md: 0 8px 22px rgba(0, 0, 0, .12);
+  --header-h: 120px;
+  --hero-push: clamp(24px, 6vw, 64px);
+}
+
+/* ===== Layout ===== */
+.home {
+  background: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  padding-top: calc(var(--header-h) + 8px);
+  overflow-x: hidden;
+}
+
+.homeContainer {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: clamp(12px, 3vw, 24px);
+  box-sizing: border-box;
+}
+
+.donateBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #e11d48;
+  color: #fff;
+  padding: .7rem 1rem;
+  text-align: center;
+  font-weight: 700;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+  cursor: pointer;
+}
+
+/* ===== Hero ===== */
+.hero {
+  background: var(--background);
+  padding: clamp(16px, 3vw, 32px) 0;
+  padding-top: 170px;
+}
+
+.heroMainContent {
+  display: flex;
+  gap: clamp(16px, 3vw, 28px);
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: clamp(16px, 3vw, 24px);
+}
+
+.heroTextBlock {
+  min-width: 280px;
+  flex: 1;
+}
+
+.wel {
+  font-family: 'Righteous', system-ui, sans-serif;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: .5px;
+  margin: 0 0 .75rem;
+  animation: colorCycle 12s ease-in-out infinite;
+  margin-top: 100px;
+  
+}
+
+@keyframes colorCycle {
+  0% { color: #e74c3c }
+  25% { color: #f39c12 }
+  50% { color: #27ae60 }
+  75% { color: #2980b9 }
+  100% { color: #8e44ad }
+}
+
+.heroTextBlock p {
+  margin: 0 0 1.1rem;
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  line-height: 1.6;
+}
+
+.heroImage {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Extra top space only for the hero text + image */
+.heroMainContent .heroTextBlock,
+.heroMainContent .heroImage {
+  margin-top: var(--hero-push);
+}
+
+/* ===== Testimonials ===== */
+.testimonials {
+  padding: clamp(20px, 4vw, 40px) 0 0;
+}
+
+/* ===== About & Mission ===== */
+.aboutMission {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: clamp(16px, 3vw, 28px);
+  padding: clamp(24px, 5vw, 48px) 0;
+}
+
+.about,
+.mission {
+  background: var(--card);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: clamp(16px, 3vw, 24px);
+}
+
+.subTitle {
+  font-size: .8rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: .6px;
+  margin: 0 0 .35rem;
+}
+
+.about h2,
+.mission h2 {
+  margin: 0 0 .5rem;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+}
+
+.about p,
+.mission p {
+  margin: 0;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.readMore {
+  margin-top: .9rem;
+  background: none;
+  border: 0;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.readMore:hover {
+  opacity: .85;
+}
+
+/* Anchor offset */
+.anchorFix {
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+/* ===== Services ===== */
+.services {
+  padding: clamp(24px, 5vw, 56px) 0;
+}
+
+.ser {
+  text-align: center;
+  margin-bottom: clamp(12px, 2vw, 20px);
+}
+
+.serviceWrapper {
+  position: relative;
+  overflow-x: auto;
+  /* horizontal scroll enabled */
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  scrollbar-width: thin;
+}
+
+/* WebKit scrollbars */
+.serviceWrapper::-webkit-scrollbar { height: 10px; }
+.serviceWrapper::-webkit-scrollbar-track { background: transparent; }
+.serviceWrapper::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, .3); border-radius: 8px; }
+.serviceWrapper:hover::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, .5); }
+
+/* Auto-scroll content */
+.serviceScroller {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  padding-bottom: 8px;
+  animation: scrollLoop 40s linear infinite;
+}
+
+@keyframes scrollLoop {
+  from { transform: translateX(0) }
+  to { transform: translateX(-50%) }
+}
+
+/* Manual scroll mode */
+.manualScroll {
+  animation: none !important;
+  overflow-x: auto !important;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none; /* Firefox hide */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.manualScroll::-webkit-scrollbar { display: none; }
+.manualScroll .serviceScroller { animation: none !important; }
+
+/* ===== Flip Cards ===== */
+.cardContainer {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  margin: .75rem;
+}
+.flipCard {
+  width: 260px;
+  height: 300px;
+  position: relative;
+  flex-shrink: 0;
+  margin: 0 12px;
+}
+.flipCardInner {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .8s;
+}
+.flipCard:hover .flipCardInner { transform: rotateY(180deg); }
+
+.flipCardFront,
+.flipCardBack {
+  position: absolute;
+  inset: 0;
+  background: var(--card);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+  backface-visibility: hidden;
+}
+.flipCardFront img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+.flipCardBack { transform: rotateY(180deg); }
+
+/* ===== Sticky Scrollbar ===== */
+.stickyBar {
+  height: 10px;
+  background: rgba(0, 0, 0, .08);
+  border-radius: 999px;
+  margin: 12px 16px 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  user-select: none;
+  touch-action: none;
+  cursor: pointer;
+}
+.showBar { opacity: 1; pointer-events: auto; }
+.stickyThumb {
+  height: 100%;
+  background: var(--primary);
+  border-radius: inherit;
+  transform: translateX(0);
+  touch-action: none;
+  cursor: grab;
+}
+.stickyThumb:active { cursor: grabbing; }
+
+/* ===== Modal ===== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .75);
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+.modalContent {
+  background: var(--background);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  width: min(800px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-md);
+  padding: clamp(16px, 3vw, 24px);
+  animation: scaleIn .25s ease;
+}
+@keyframes scaleIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.stickyBar { opacity: 0; transition: opacity 0.3s; }
+.showBar { opacity: 1; }
+
+/* Layout (dup to ensure scope) */
+.home {
+  background: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  padding-top: calc(var(--header-h) + 8px);
+  overflow-x: hidden;
+}
+.homeContainer {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(12px, 3vw, 24px);
+}
+.donateBanner {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: #e11d48;
+  color: #fff;
+  padding: .7rem 1rem;
+  text-align: center;
+  font-weight: 700;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+  cursor: pointer;
+}
+
+/* Services */
+.services { padding: clamp(24px, 5vw, 56px) 0; }
+.ser { text-align: center; margin-bottom: clamp(12px, 2vw, 20px); }
+.serviceWrapper { position: relative; width: 100%; }
+
+.hiddenScroll { overflow: hidden; scrollbar-width: none; }
+.hiddenScroll::-webkit-scrollbar { display: none; }
+
+.manualScroll { overflow-x: auto; overflow-y: visible; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.manualScroll::-webkit-scrollbar { height: 10px; }
+.manualScroll::-webkit-scrollbar-track { background: transparent; }
+.manualScroll::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, .35); border-radius: 8px; }
+.manualScroll:hover::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, .5); }
+
+/* Scrollers */
+.scroller { display: flex; gap: 1rem; width: max-content; padding-bottom: 8px; }
+.scrollerMarquee { display: flex; gap: 1rem; width: max-content; padding-bottom: 8px; animation: marquee 30s linear infinite; }
+.scrollerMarquee:hover { animation-play-state: paused; }
+@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+/* Thin custom bar */
+.stickyBar { height: 10px; background: rgba(0, 0, 0, .08); border-radius: 999px; margin: 12px 16px 0; opacity: 0; pointer-events: none; transition: opacity .2s ease; user-select: none; touch-action: none; cursor: pointer; }
+.showBar { opacity: 1; pointer-events: auto; }
+.stickyThumb { height: 100%; background: var(--primary); border-radius: inherit; transform: translateX(0); touch-action: none; cursor: grab; }
+.stickyThumb:active { cursor: grabbing; }
+
+/* ===== Modal Styling (mobile-first, clean & modern) ===== */
+.modalOverlay { position: fixed; inset: 0; background: rgba(15, 18, 25, 0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: grid; place-items: end; padding: 0.75rem; z-index: 10000; }
+@media (min-width: 640px) { .modalOverlay { place-items: center; padding: 1.25rem; } }
+@keyframes modalPop { 0% { transform: translateY(16px) scale(.98); opacity: 0; } 60% { transform: translateY(0) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); } }
+.modalShell { width: 100%; max-width: 840px; background: var(--background, #fff); color: var(--text, #111827); border-radius: 18px; box-shadow: 0 20px 40px rgba(0, 0, 0, .2), 0 2px 10px rgba(0, 0, 0, .08); animation: modalPop .24s ease both; overflow: hidden; display: flex; flex-direction: column; }
+.modalHeader { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: 14px 16px; border-bottom: 1px solid rgba(0, 0, 0, .06); background: linear-gradient(180deg, rgba(0, 0, 0, .02), transparent); }
+.modalTitle { margin: 0; font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 800; letter-spacing: .2px; }
+.modalClose { appearance: none; border: none; background: rgba(0, 0, 0, .06); width: 36px; height: 36px; border-radius: 10px; line-height: 1; font-size: 22px; font-weight: 700; color: inherit; display: grid; place-items: center; cursor: pointer; transition: transform .12s ease, background .12s ease, opacity .2s ease; }
+.modalClose:hover { background: rgba(0, 0, 0, .1); transform: scale(1.05); }
+.modalClose:active { transform: scale(.95); }
+.modalBody { flex: 1; max-height: min(72vh, 720px); overflow-y: auto; padding: 14px 16px 16px; font-size: .95rem; line-height: 1.55; }
+.modalBody::-webkit-scrollbar { width: 8px; }
+.modalBody::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, .15); border-radius: 999px; }
+.modalBody:hover::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, .28); }
+
+/* Leadership list inside modal */
+.leadershipList { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: 1fr; }
+@media (min-width: 520px) { .leadershipList { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .leadershipList { grid-template-columns: 1fr 1fr; gap: 16px; } }
+.leadershipItem { background: var(--card, #fff); border: 1px solid rgba(0, 0, 0, .06); border-radius: 14px; padding: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, .06); display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: center; }
+.leaderImg { width: 72px; height: 72px; border-radius: 12px; object-fit: cover; box-shadow: 0 1px 6px rgba(0, 0, 0, .12); }
+.leaderName { margin: 0; font-weight: 800; font-size: 1rem; }
+.leaderRole { margin: 2px 0 4px; font-size: .85rem; color: var(--primary, #2563eb); font-weight: 700; }
+.leaderText { margin: 0; font-size: .9rem; line-height: 1.5; color: rgba(0, 0, 0, .72); }
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .modalShell { background: #0f1219; color: #e5e7eb; }
+  .modalHeader { border-bottom-color: rgba(255, 255, 255, .08); }
+  .modalClose { background: rgba(255, 255, 255, .06); }
+  .modalClose:hover { background: rgba(255, 255, 255, .12); }
+  .leadershipItem { border-color: rgba(255, 255, 255, .08); }
+  .leaderText { color: rgba(229, 231, 235, .8); }
+}
+
+/* Fix text contrast inside leadership cards */
+.leaderName { margin: 0; font-weight: 800; font-size: 1rem; color: var(--text, #111827); }
+.leaderRole { margin: 2px 0 4px; font-size: .9rem; font-weight: 700; color: var(--primary, #2563eb); }
+.leaderText { margin: 0; font-size: .9rem; line-height: 1.55; color: var(--text, #111827); }
+
+@media (prefers-color-scheme: dark) {
+  .leaderName { color: #f9fafb; }
+  .leaderRole { color: #60a5fa; }
+  .leaderText { color: #e5e7eb; }
+}
+
+/* Strong contrast, no truncation */
+.leadershipItem { background: #ffffff; color: #0f172a; mix-blend-mode: normal; }
+@media (prefers-color-scheme: dark) { .leadershipItem { background: #161a22; color: #f8fafc; } }
+.leadershipItem * { color: inherit !important; opacity: 1 !important; text-shadow: none !important; }
+.leaderName { font-weight: 800; font-size: 1rem; margin: 0; }
+.leaderRole { font-weight: 700; font-size: 0.95rem; margin: 2px 0 8px; }
+.leaderText { font-size: 0.98rem; line-height: 1.6; margin: 0; }
+.leaderName, .leaderRole, .leaderText { overflow: visible !important; white-space: normal !important; text-overflow: clip !important; display: block !important; -webkit-line-clamp: unset !important; line-clamp: unset !important; -webkit-box-orient: initial !important; }
+
+.leadershipItem { grid-template-columns: 80px 1fr; gap: 14px; }
+.leaderImg { width: 80px; height: 80px; border-radius: 12px; object-fit: cover; }
+.modalShell { color: inherit; }
+.modalBody { color: inherit; }
+
+.leadershipItem { grid-template-columns: 88px 1fr; gap: 16px; padding: 16px 18px; min-height: 180px; border-radius: 16px; }
+.leaderImg { width: 88px; height: 88px; border-radius: 12px; object-fit: cover; }
+.leaderName, .leaderRole, .leaderText { grid-column: 2 / 3 !important; }
+.leaderName { margin: 0 0 2px; font-weight: 800; font-size: 1.05rem; }
+.leaderRole { margin: 0 0 10px; font-size: 0.95rem; font-weight: 700; color: var(--primary, #2563eb); }
+.leaderText { margin: 0; font-size: 0.98rem; line-height: 1.6; }
+
+.leadershipItem p, .leaderName, .leaderRole, .leaderText { overflow: visible !important; white-space: normal !important; text-overflow: clip !important; -webkit-line-clamp: unset !important; line-clamp: unset !important; display: block !important; }
+@media (min-width: 900px) { .leadershipItem { min-height: 200px; padding: 18px 20px; } }
+
+/* ========== Modal: light, colorful, mobile-first ========== */
+.modalOverlay { position: fixed; inset: 0; background: rgba(20, 22, 30, .35); backdrop-filter: blur(8px); display: grid; place-items: end; padding: .75rem; z-index: 10000; }
+@media (min-width:640px) { .modalOverlay { place-items: center; padding: 1.25rem; } }
+@keyframes modalFloat { 0% { transform: translateY(18px) scale(.98); opacity: 0 } 60% { transform: translateY(0) scale(1.01); opacity: 1 } 100% { transform: translateY(0) scale(1) } }
+.modalShell { width: 100%; max-width: 980px; background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%); border: 1px solid rgba(30, 41, 59, .10); border-radius: 18px; box-shadow: 0 24px 60px rgba(2, 6, 23, .20); overflow: hidden; animation: modalFloat .22s ease-out both; color: #0f172a; }
+.modalHeader { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid rgba(2, 6, 23, .06); background: linear-gradient(180deg, rgba(2, 6, 23, .02), transparent); }
+.modalTitle { margin: 0; font-weight: 900; font-size: clamp(1.1rem, 2.6vw, 1.5rem); letter-spacing: .2px; }
+.modalClose { border: none; background: rgba(2, 6, 23, .06); width: 36px; height: 36px; border-radius: 10px; font-size: 22px; font-weight: 800; display: grid; place-items: center; cursor: pointer; transition: transform .12s, background .12s; }
+.modalClose:hover { background: rgba(2, 6, 23, .12); transform: scale(1.05); }
+.modalBody { max-height: min(76vh, 780px); overflow: auto; padding: 16px 18px; }
+
+/* Leadership grid */
+.leadershipList { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width:720px) { .leadershipList { grid-template-columns: 1fr 1fr; } }
+.leadershipItem { display: grid; grid-template-columns: 88px 1fr; gap: 16px; align-items: center; padding: 16px 18px; border-radius: 16px; background: var(--card-bg, #fff); border: 1px solid var(--card-border, rgba(2, 6, 23, .08)); box-shadow: 0 6px 18px rgba(2, 6, 23, .06); }
+.leaderImg { width: 88px; height: 88px; border-radius: 12px; object-fit: cover; }
+.leaderName, .leaderRole, .leaderText { grid-column: 2 / 3; }
+.leaderName { margin: 0; font-weight: 900; font-size: 1.08rem; color: #0b1220; }
+.leaderRole { margin: 2px 0 10px; font-weight: 800; font-size: .95rem; color: var(--accent, #2563eb); }
+.leaderText { margin: 0; font-size: .98rem; line-height: 1.6; color: #0f172a; }
+.leaderName, .leaderRole, .leaderText { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; -webkit-line-clamp: unset !important; line-clamp: unset !important; }
+
+/* Accents */
+.leadershipList > li:nth-child(1) { --accent: #2563eb; --card-bg: linear-gradient(180deg, #eef5ff 0%, #ffffff 100%); --card-border: rgba(37, 99, 235, .25); }
+.leadershipList > li:nth-child(2) { --accent: #16a34a; --card-bg: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%); --card-border: rgba(22, 163, 74, .22); }
+.leadershipList > li:nth-child(3) { --accent: #e11d48; --card-bg: linear-gradient(180deg, #fff1f2 0%, #ffffff 100%); --card-border: rgba(225, 29, 72, .22); }
+.leadershipList > li:nth-child(4) { --accent: #a855f7; --card-bg: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%); --card-border: rgba(168, 85, 247, .22); }
+
+@media (prefers-color-scheme: dark) {
+  .modalShell { background: linear-gradient(180deg, #0f1220 0%, #0b1020 100%); color: #e5e7eb; }
+  .modalHeader { border-bottom-color: rgba(255, 255, 255, .08); }
+  .modalClose { background: rgba(255, 255, 255, .06); }
+  .modalClose:hover { background: rgba(255, 255, 255, .12); }
+  .leaderName { color: #f9fafb; }
+  .leaderText { color: #e5e7eb; }
+  .leadershipList>li:nth-child(1) { --card-bg: linear-gradient(180deg, #0f172a 0%, #0b1220 100%); --card-border: rgba(37, 99, 235, .35); }
+  .leadershipList>li:nth-child(2) { --card-bg: linear-gradient(180deg, #0f1a15 0%, #0b1412 100%); --card-border: rgba(22, 163, 74, .35); }
+  .leadershipList>li:nth-child(3) { --card-bg: linear-gradient(180deg, #1a0f14 0%, #150c11 100%); --card-border: rgba(225, 29, 72, .35); }
+  .leadershipList>li:nth-child(4) { --card-bg: linear-gradient(180deg, #160f1f 0%, #130d1a 100%); --card-border: rgba(168, 85, 247, .35); }
+}
+
+/* Leadership cards: name + role stacked together */
+.leaderName { margin: 0; font-weight: 800; font-size: 1.05rem; color: #fff; }
+.leaderRole { margin: 2px 0 10px; font-size: 0.92rem; font-weight: 600; color: var(--accent, #38bdf8); }
+.leadershipItem { display: grid; grid-template-columns: 88px 1fr; grid-template-rows: auto auto 1fr; gap: 8px 16px; align-items: start; padding: 16px 18px; border-radius: 16px; background: var(--card-bg, #fff); border: 1px solid var(--card-border, rgba(2, 6, 23, .08)); box-shadow: 0 6px 18px rgba(2, 6, 23, .06); }
+.leaderImg { grid-row: 1 / span 2; grid-column: 1 / 2; width: 88px; height: 88px; border-radius: 12px; object-fit: cover; }
+.leaderName, .leaderRole { grid-column: 2 / 3; }
+.leaderText { grid-column: 1 / -1; margin-top: 6px; font-size: 0.95rem; line-height: 1.55; color: #e5e7eb; }
+
+/* === OVERRIDES: paste below everything else ===================== */
+.subTitle { display: none !important; }
+
+/* Mobile-first hero: stack, text first, image second */
+@media (max-width: 767px) {
+  .heroMainContent { flex-direction: column; align-items: stretch; gap: 14px; }
+  .heroTextBlock { order: 1; }
+  .heroImage { order: 2; width: 100%; max-width: none; margin-top: 6px; }
+  .aboutMission { display: grid; grid-template-columns: 1fr; gap: 16px; padding-top: 20px; }
+}
+
+/* Tablet/desktop keep two-column */
+@media (min-width: 768px) {
+  .aboutMission { display: grid; grid-template-columns: repeat(2, minmax(280px, 1fr)); gap: clamp(16px, 3vw, 28px); }
+}
+
+/* Tiny screens polish */
+@media (max-width: 480px) {
+  .wel { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+  .heroTextBlock p { font-size: 1rem; }
+}
+
+/* Desktop center hero text */
+@media (min-width: 1024px) {
+  .heroMainContent { flex-direction: column; align-items: center; text-align: center; }
+}
+
+/* Image as background layer */
+.heroMainContent { position: relative; }
+.heroTextBlock { position: relative; z-index: 1; }
+.heroMainContent { position: relative; overflow: hidden; }
+.heroImage {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; border-radius: var(--radius-md);
+  z-index: 0; filter: brightness(.6);
+}
+.heroTextBlock { position: relative; z-index: 1; }
+
+/* Hero sizing */
+.heroMainContent { position: relative; overflow: hidden; min-height: clamp(320px, 52vh, 560px); border-radius: var(--radius-md); }
+.heroImage {
+  position: absolute; inset: 0;
+  width: 100% !important; height: 100% !important; max-width: none !important; margin: 0 !important;
+  object-fit: cover; border-radius: inherit; z-index: 0; filter: brightness(.65);
+}
+.heroTextBlock { position: relative; z-index: 1; text-align: center; margin-inline: auto; }
+
+/* Mobile: remove big top gap */
+@media (max-width: 767px) {
+  .hero { padding-top: 8px !important; }
+  .heroMainContent { margin-top: 0 !important; }
+  .heroMainContent .heroTextBlock, .heroMainContent .heroImage { margin-top: 0 !important; }
+}
+
+/* Mobile push text a bit */
+@media (max-width: 767px) {
+  .heroMainContent { margin-top: 20px !important; text-align: center; }
+  .wel { font-size: 1.8rem; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,.6); }
+}
+
+/* Overlay + text */
+.heroMainContent { position: relative; overflow: hidden; min-height: clamp(320px, 52vh, 560px); border-radius: var(--radius-md); }
+.heroMainContent::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.45); z-index: 0; border-radius: inherit; }
+.heroTextBlock { position: relative; z-index: 1; text-align: center; margin-inline: auto; }
+.heroTextBlock p { color: #f9fafb; text-shadow: 0 2px 6px rgba(0,0,0,.6); margin: 0; font-size: 190%; font-weight: bold; }
+
+@media (max-width: 767px) {
+  .heroMainContent { margin-top: 20px !important; text-align: center; }
+  .heroTextBlock p { color: #f9fafb; text-shadow: 0 2px 6px rgba(0,0,0,.6); margin: 0; font-size: 130%; }
+  .wel { font-size: 1.8rem; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,.6); margin-top: 180px; font-weight: bold; }
+}
+
+/* Desktop hero framing */
+@media (min-width: 1024px) {
+  .heroMainContent { min-height: 70vh; }
+  .heroImage { object-position: center 10%; }
+}
+@media (min-width: 1440px) {
+  .heroImage { object-position: center 5%; }
+}
+
+/* ===== Leadership (theme-aware) ===== */
+.leadershipSection { padding: clamp(20px, 4vw, 40px) 0; }
+.sectionTitle { margin: 0 0 12px; font-size: clamp(1.25rem, 2.4vw, 1.6rem); font-weight: 800; color: var(--text); }
+.leadershipList { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .leadershipList { grid-template-columns: 1fr 1fr; } }
+
+/* Card */
+.leadershipItem { display: grid; grid-template-columns: 88px 1fr; gap: 14px 16px; align-items: start; padding: 16px 18px; border-radius: 16px; background: var(--card); color: var(--text); border: 1px solid var(--card-border, rgba(0,0,0,.08)); box-shadow: var(--shadow-sm); }
+.leaderImg { grid-row: 1 / span 2; grid-column: 1 / 2; width: 88px; height: 88px; border-radius: 12px; object-fit: cover; box-shadow: 0 1px 6px rgba(0,0,0,.12); }
+.leaderName, .leaderRole, .leaderText { grid-column: 2 / 3; color: inherit; }
+.leaderName { margin: 0 0 2px; font-weight: 800; font-size: 1.05rem; }
+.leaderRole { margin: 0 0 10px; font-size: .95rem; font-weight: 700; color: var(--accent, var(--primary)); }
+.leaderText { grid-column: 1 / -1; font-size: .98rem; line-height: 1.6; margin: 6px 0 0; opacity: .92; }
+.leaderName, .leaderRole, .leaderText { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; -webkit-line-clamp: unset !important; line-clamp: unset !important; }
+
+.leadershipList > li:nth-child(1) { --accent: #2563eb; }
+.leadershipList > li:nth-child(2) { --accent: #16a34a; }
+.leadershipList > li:nth-child(3) { --accent: #e11d48; }
+.leadershipList > li:nth-child(4) { --accent: #a855f7; }
+
+:root[data-theme="dark"] .leadershipItem { border-color: rgba(255,255,255,.10); box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+:root[data-theme="dark"] .leaderText { opacity: .95; }
+@media (prefers-color-scheme: dark) {
+  .leadershipItem { border-color: rgba(255,255,255,.10); box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+  .leaderText { opacity: .95; }
+}
+
+/* Orbit cards (center fade) */
+.orbitWrap { --card-w: clamp(220px, 35vmin, 280px); --card-bg: var(--card); width: 100%; display: grid; place-items: center; margin: 0 auto; min-height: 260px; }
+.orbitItem { width: var(--card-w); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.orbitCard { background: var(--card-bg); color: var(--text); border: 1px solid color-mix(in oklab, var(--text), transparent 85%); border-radius: 16px; box-shadow: var(--shadow-sm); padding: 14px 16px; text-align: center; will-change: opacity, transform; opacity: 0; transform: scale(.9); animation: orbitPop 9s ease-in-out infinite; animation-delay: calc(var(--i) * 3s); }
+.orbitCard h3 { margin: 0 0 6px; font-size: clamp(1rem, 2.2vw, 1.15rem); font-weight: 800; color: var(--primary); }
+.orbitCard p { margin: 0; line-height: 1.55; font-size: .95rem; }
+@keyframes orbitPop { 0% { opacity: 0; transform: scale(.9); } 10% { opacity: 1; transform: scale(1); } 30% { opacity: 1; } 40% { opacity: 0; transform: scale(.95); } 100% { opacity: 0; transform: scale(.9); } }
+@media (prefers-reduced-motion: reduce) {
+  .orbitCard { animation: fadeInOut 9s ease-in-out infinite; }
+  @keyframes fadeInOut { 0%,10%,30%{opacity:1} 40%,100%{opacity:0} }
+}
+@media (max-width: 640px) { .orbitWrap { --card-w: min(92vw, 320px); min-height: 220px; } }
+
+.orbitWrap { position: relative; width: 100%; display: grid; place-items: center; margin: 0 auto; min-height: 260px; }
+.orbitItem { width: var(--card-w); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.orbitCard { background: var(--card-bg); color: var(--text); border: 1px solid color-mix(in oklab, var(--text), transparent 85%); border-radius: 16px; box-shadow: var(--shadow-sm); padding: 14px 16px; text-align: center; will-change: opacity, transform; opacity: 0; transform: scale(.9); animation: orbitPop 9s ease-in-out infinite; }
+.orbitCard h3 { margin: 0 0 6px; font-size: clamp(1rem, 2.2vw, 1.15rem); font-weight: 800; color: var(--primary); }
+.orbitCard p { margin: 0; line-height: 1.55; font-size: .95rem; }
+@keyframes orbitPop { 0%{opacity:0;transform:scale(.9)} 5%{opacity:1;transform:scale(1)} 33%{opacity:1} 38%{opacity:0;transform:scale(.95)} 100%{opacity:0;transform:scale(.9)} }
+.orbitWrap .orbitItem:nth-child(1) .orbitCard { animation-delay: 0s; }
+.orbitWrap .orbitItem:nth-child(2) .orbitCard { animation-delay: 5s; }
+.orbitWrap .orbitItem:nth-child(3) .orbitCard { animation-delay: 10s; }
+@media (prefers-reduced-motion: reduce) {
+  .orbitCard { animation: fadeInOut 15s ease-in-out infinite; }
+  @keyframes fadeInOut { 0%,10%,33%{opacity:1} 38%,100%{opacity:0} }
+}
+@media (max-width: 640px) { .orbitWrap { --card-w: min(92vw, 320px); min-height: 220px; } }
+
+/* spacing for the Vision • Purpose • Values loop */
+.orbitWrap { margin: clamp(28px, 6vw, 80px) auto; }
+@media (max-width: 640px) { .orbitWrap { min-height: 220px; margin: clamp(18px, 6vw, 32px) auto; } }
+
+/* Chatbox fix */
+@media (max-width: 767px) { .heroMainContent { overflow: visible !important; } }
+.heroMainContent::before, .heroImage { border-radius: var(--radius-md); pointer-events: none; }
+
+:global(#chatbot-toggle),
+:global(.chatbotFab),
+:global([data-chatbot]),
+:global([data-chat-toggle]),
+:global([class*="chat"]):not(html):not(body) {
+  position: fixed !important; right: 16px !important; bottom: 16px !important;
+  z-index: 2147483647 !important; pointer-events: auto !important;
+}
+@media (max-width: 767px) {
+  :global(#chatbot-toggle),
+  :global(.chatbotFab),
+  :global([data-chat-toggle]) { bottom: 76px !important; }
+}
+.chatbotFab { position: fixed; right: 16px; bottom: 16px; z-index: 2147483646; width: 52px; height: 52px; border: 0; border-radius: 999px; background: var(--primary, #2563eb); color: #fff; font-size: 22px; line-height: 52px; text-align: center; box-shadow: var(--shadow-md); cursor: pointer; }
+.chatPanel { position: fixed; right: 16px; bottom: 16px; z-index: 2147483647; width: min(92vw, 380px); height: min(72vh, 600px); background: var(--card, #fff); color: var(--text, #0f172a); border: 1px solid rgba(0,0,0,.08); border-radius: 16px; box-shadow: 0 24px 60px rgba(2,6,23,.25); overflow: hidden; }
+.chatClose { position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border: 0; border-radius: 10px; background: rgba(0,0,0,.06); color: inherit; font-size: 20px; font-weight: 800; line-height: 32px; text-align: center; cursor: pointer; }
+.chatClose:hover { background: rgba(0,0,0,.12); }
+.chatBody { width: 100%; height: 100%; padding-top: 40px; overflow: hidden; }
+@media (max-width: 767px) {
+  .chatbotFab { bottom: 76px; }
+  .chatPanel  { bottom: 76px; width: min(96vw, 420px); height: min(70vh, 560px); }
+}
+.backToTop { position: fixed; right: 16px; bottom: 16px; z-index: 2147483645; width: 48px; height: 48px; border: 0; border-radius: 999px; background: var(--primary, #2563eb); color: #fff; font-size: 22px; line-height: 48px; text-align: center; box-shadow: var(--shadow-md); cursor: pointer; }
+@media (max-width: 767px) { .backToTop { bottom: 16px; right: 16px; } }
+
+/* Header fixed only on mobile */
+@media (min-width: 1024px) {
+  :global(.siteHeader), :global(header.header) { position: static !important; }
+}
+@media (max-width: 1023px) {
+  :global(.siteHeader), :global(header.header) { position: fixed !important; top: 0; left: 0; right: 0; z-index: 1000; }
+}
+:global(#chatbot-toggle),
+:global(.chatbotFab),
+:global([data-chatbot]),
+:global([data-chat-toggle]) {
+  position: fixed !important; right: 16px !important; bottom: 16px !important; z-index: 2147483646 !important;
+}
+@media (max-width: 767px) {
+  :global(#chatbot-toggle),
+  :global(.chatbotFab),
+  :global([data-chat-toggle]) { bottom: 76px !important; }
+}
+
+/* Kill custom chat UI if any */
+.chatbotFab, .chatPanel { display: none !important; }
+:global(.chatbotFab), :global([data-chat-toggle]) { all: unset !important; display: none !important; }
+
+/* Header not fixed; remove top offset */
+:global(header.header), :global(.siteHeader) {
+  position: static !important; top: auto !important; left: auto !important; right: auto !important;
+  transform: none !important; width: 100% !important; border-radius: 0 !important;
+}
+.home { padding-top: 8px !important; }
+
+/* Click-through hero layers */
+.heroMainContent::before, .heroImage { pointer-events: none; }
+
+/* Back to top */
+.backToTop{ position: fixed; right: 16px; bottom: 16px; z-index: 1000; width: 48px; height: 48px; border: 0; border-radius: 999px; background: var(--primary, #2563eb); color: #fff; font-size: 20px; line-height: 48px; text-align: center; box-shadow: 0 8px 22px rgba(0,0,0,.12); cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+.showTop { opacity: 1; pointer-events: auto; }
+
+/* ——— FULL-BLEED HERO, GLUED TO THE HEADER ——— */
+.hero{ padding-top: 0 !important; }
+.heroMainContent{
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  border-radius: 0 !important;
+  
+}
+.heroMainContent .heroTextBlock,
+.heroMainContent .heroImage{ margin-top: 0 !important; }
+.heroMainContent::before, .heroImage{ border-radius: 0 !important; }
+@media (min-width:1024px){ .home{ padding-top: 0 !important; } }
+
+:root{ --donate-h: 0px; }
+@media (max-width:1023px){
+  .hero{ padding-top: calc(var(--header-h) + var(--donate-h)) !important; }
+}
+/* Remove default page margin just in case (CSS Modules global) */
+:global(html, body){ margin:0; }
+
+/* Full-bleed hero with no right gap */
+.heroMainContent{
+  width: 100dvw !important;
+  margin-left:  calc(50% - 50dvw) !important;
+  margin-right: calc(50% - 50dvw) !important;
+  border-radius: 0 !important;
+  box-sizing: border-box;
+
+}
+@supports not (width: 100dvw){
+  .heroMainContent{
+    width: 100vw !important;
+    margin-left:  calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+  }
+}
+.heroMainContent::before, .heroImage{ border-radius: 0 !important; }
+
+/* ========== DESKTOP FIXES ONLY (no mobile changes) ========== */
+/* Remove bottom horizontal scrollbar and ensure no margins on heroMainContent */
+@media (min-width:1024px){
+  html, body, #root, #__next { overflow-x: clip; }
+  .home { overflow-x: clip !important; }
+
+  /* center the full-bleed hero without using margins */
+  .heroMainContent{
+    width: 100dvw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0 !important;
+  
+  }
+}
+@supports not (overflow: clip) {
+  @media (min-width:1024px){
+    html, body, #root, #__next { overflow-x: hidden; }
+  }
+}
+/* ===== Desktop dark mode: clearer header/menu ===== */
+@media (min-width:1024px){
+  :root[data-theme="dark"]{
+    /* strong, legible palette for the header area */
+    --dm-bg: #0b1220;
+    --dm-bg-2: #0e172a;
+    --dm-text: #e6edf3;
+    --dm-muted: #cbd5e1;
+    --dm-border: rgba(255,255,255,.12);
+    --dm-hover: rgba(96,165,250,.16);   /* soft blue hover */
+    --dm-accent: #60a5fa;              /* link/active accent */
+  }
+
+  /* Header bar itself */
+  :root[data-theme="dark"] :is(header.header,.siteHeader){
+    background: linear-gradient(180deg,var(--dm-bg) 0%,var(--dm-bg-2) 100%) !important;
+    color: var(--dm-text) !important;
+    border-bottom: 1px solid var(--dm-border) !important;
+    box-shadow: 0 1px 0 rgba(255,255,255,.04) inset !important;
+  }
+
+  /* Main nav links */
+  :root[data-theme="dark"] :is(header.header,.siteHeader) nav a{
+    color: var(--dm-text) !important;
+    background: transparent !important;
+  }
+  :root[data-theme="dark"] :is(header.header,.siteHeader) nav a:hover{
+    background: var(--dm-hover) !important;
+  }
+  :root[data-theme="dark"] :is(header.header,.siteHeader) nav a[aria-current="page"],
+  :root[data-theme="dark"] :is(header.header,.siteHeader) nav a.active{
+    color: var(--dm-text) !important;
+    box-shadow: 0 0 0 9999px var(--dm-hover) inset !important; /* subtle pill fill */
+  }
+
+  /* Donate button in dark */
+  :root[data-theme="dark"] :is(header.header,.siteHeader) .donateBtn{
+    color: #ffe4e6 !important;
+    background: rgba(244,63,94,.14) !important;
+    border: 1px solid rgba(244,63,94,.35) !important;
+    box-shadow: 0 8px 28px rgba(244,63,94,.22) !important;
+  }
+
+  /* Search input */
+  :root[data-theme="dark"] :is(header.header,.siteHeader) .search input{
+    background: #0b1324 !important;
+    color: var(--dm-text) !important;
+    border: 1px solid var(--dm-border) !important;
+  }
+  :root[data-theme="dark"] :is(header.header,.siteHeader) .search input::placeholder{
+    color: var(--dm-muted) !important;
+  }
+  :root[data-theme="dark"] :is(header.header,.siteHeader) .search button{
+    background: #0c1b34 !important;
+    border-color: var(--dm-border) !important;
+  }
+
+  /* Language/select chip */
+  :root[data-theme="dark"] :is(header.header,.siteHeader) .langSelect,
+  :root[data-theme="dark"] :is(header.header,.siteHeader) select{
+    background: #0b1324 !important;
+    color: var(--dm-text) !important;
+    border: 1px solid var(--dm-border) !important;
+  }
+
+  /* Make any SVG icons visible on dark */
+  :root[data-theme="dark"] :is(header.header,.siteHeader) svg{
+    filter: brightness(1.3) saturate(1.1);
+  }
+}
+
+/* Optional: slightly stronger overlay for hero in dark so text pops */
+:root[data-theme="dark"] .heroMainContent::before{
+  background: rgba(0,0,0,.55) !important;
+}
+
+/* Lift the Back-to-Top button above the chatbot so it’s visible */
+.backToTop{
+  bottom: 120px !important;  /* raise above chat bubble */
+  right: 16px !important;
+  z-index: 2147483646 !important; /* ensure it’s not hidden */
+}
+
+@media (max-width: 767px){
+  .backToTop{
+    bottom: 160px !important; /* extra lift on mobile */
+  }
+}
+
+
+
+/* =========================
+   Testimony-style Statements
+   ========================= */
+.statementsCarousel {
+  padding: clamp(24px, 5vw, 56px) 0;
+}
+
+.statementsHeader {
+  text-align: center;
+  margin-bottom: clamp(12px, 2vw, 20px);
+}
+.statementsHeader h2 {
+  margin: 0 0 6px;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  font-weight: 800;
+}
+.statementsSub {
+  margin: 0;
+  opacity: .85;
+}
+
+.statementViewport {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.statementTrack {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  transition: transform .5s ease-in-out;
+}
+
+.statementSlide {
+  padding: 6px 10px;
+  display: grid;
+  place-items: center;
+}
+
+.statementCard {
+  width: min(720px, 92%);
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid color-mix(in oklab, var(--text), transparent 88%);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: clamp(14px, 3vw, 22px);
+  text-align: center;
+  animation: fadeInUp .45s ease both;
+}
+
+.statementBadge {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--primary);
+  margin: 0 auto 10px;
+  opacity: .9;
+}
+
+.statementTitle {
+  margin: 0 0 6px;
+  font-weight: 800;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+.statementText {
+  margin: 0;
+  line-height: 1.6;
+  opacity: .92;
+}
+
+.statementDots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.statementDot {
+  width: 9px; height: 9px;
+  border-radius: 999px;
+  border: 2px solid color-mix(in oklab, var(--text), transparent 70%);
+  background: transparent;
+  cursor: pointer;
+  opacity: .7;
+  transition: transform .15s ease, opacity .15s ease, background .15s ease;
+}
+.statementDot:hover { opacity: 1; transform: scale(1.1); }
+.activeDot { background: var(--primary); border-color: var(--primary); opacity: 1; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px) }
+  to   { opacity: 1; transform: translateY(0) }
+}
+
+/* =========================
+   Leadership animations + per-item colors
+   ========================= */
+/* Fade/slide in each card with stagger using --delay */
+.leadershipItem {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: leaderIn .6s ease forwards;
+  animation-delay: var(--delay, 0ms);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+@keyframes leaderIn {
+  0% { opacity: 0; transform: translateY(8px) scale(.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.leadershipItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(2,6,23,.12);
+}
+
+/* Use per-card accent/title/role colors if provided inline */
+.leaderName { color: var(--leaderTitle, inherit); }
+.leaderRole { color: var(--leaderRole, var(--accent, var(--primary))); }
+
+/* If you prefer CSS variables instead of inline styles, you can
+   also pass them as style={{ '--leaderTitle': '#123456', '--leaderRole': '#ff0' }} */
+
+/* Small lift on image hover for fun */
+.leaderImg {
+  transition: transform .25s ease;
+}
+.leadershipItem:hover .leaderImg {
+  transform: translateY(-2px) scale(1.03);
+}
+/* ── Leadership: glue the title to the cards ───────────────────── */
+.leadershipSection .modalTitle{
+  margin: 0 0 8px !important;   /* tighter gap under the heading */
+  letter-spacing: .2px;
+}
+.leadershipSection .leadershipList{ margin-top: 0 !important; }
+
+/* ── Leadership cards: pretty accents + hover ──────────────────── */
+.leadershipItem{
+  position: relative;
+  background: var(--cardBg, var(--card)); /* can still be overridden per member */
+  border: 1px solid color-mix(in oklab, var(--text), transparent 88%);
+  box-shadow: 0 10px 28px rgba(2,6,23,.10);
+  transition: transform .18s ease, box-shadow .18s ease, background .2s;
+  overflow: hidden; /* for the accent bar radius */
+}
+.leadershipItem:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(2,6,23,.14);
+}
+
+/* left accent bar that picks up --accent */
+.leadershipItem::before{
+  content:"";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6px;
+  background: var(--accent, var(--primary));
+  opacity: .95;
+  border-radius: 16px 0 0 16px;
+}
+
+/* name + role use per-card colors when provided */
+.leaderName{
+  color: var(--titleColor, var(--text)) !important;
+  font-weight: 800;
+}
+.leaderRole{
+  color: var(--accent, var(--primary)) !important;
+  font-weight: 800;
+}
+
+/* ── Nice, distinct colors for the first 4 cards (fallbacks) ──── */
+.leadershipList > li:nth-child(1){
+  --accent: #2563eb; /* blue */
+  --titleColor: #0b1220;
+  --cardBg: linear-gradient(180deg, #eef5ff 0%, #ffffff 100%);
+}
+.leadershipList > li:nth-child(2){
+  --accent: #16a34a; /* emerald */
+  --titleColor: #0b1220;
+  --cardBg: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%);
+}
+.leadershipList > li:nth-child(3){
+  --accent: #e11d48; /* rose */
+  --titleColor: #0b1220;
+  --cardBg: linear-gradient(180deg, #fff1f2 0%, #ffffff 100%);
+}
+.leadershipList > li:nth-child(4){
+  --accent: #8b5cf6; /* violet */
+  --titleColor: #0b1220;
+  --cardBg: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%);
+}
+
+/* Dark mode harmony */
+@media (prefers-color-scheme: dark){
+  .leadershipItem{
+    border-color: rgba(255,255,255,.10);
+    box-shadow: 0 14px 36px rgba(0,0,0,.35);
+    /* keep gradients subtle but dark-friendly */
+    background: var(--cardBg, linear-gradient(180deg,#0f1220 0%, #0b1020 100%));
+  }
+  .leadershipList > li:nth-child(1){ --cardBg: linear-gradient(180deg,#0f172a 0%, #0b1220 100%); }
+  .leadershipList > li:nth-child(2){ --cardBg: linear-gradient(180deg,#0f1a15 0%, #0b1412 100%); }
+  .leadershipList > li:nth-child(3){ --cardBg: linear-gradient(180deg,#1a0f14 0%, #150c11 100%); }
+  .leadershipList > li:nth-child(4){ --cardBg: linear-gradient(180deg,#160f1f 0%, #130d1a 100%); }
+}
+/* ── LIGHT (WHITE) MODE COLORS FOR LEADERSHIP ──────────────── */
+/* works if you toggle :root[data-theme="dark"]. also covers
+   plain light mode when no data-theme is set */
+:root[data-theme="light"] .leadershipItem,
+:root:not([data-theme="dark"]) .leadershipItem{
+  /* light card shell */
+  background: var(--cardBgLight, linear-gradient(180deg,#f8fafc 0%, #ffffff 100%));
+  color: #0b1220;                    /* strong body text */
+  border: 1px solid rgba(2,6,23,.10);
+  box-shadow: 0 10px 24px rgba(2,6,23,.08);
+}
+:root[data-theme="light"] .leaderName,
+:root:not([data-theme="dark"]) .leaderName{
+  color: var(--titleColorLight, #0b1220) !important;
+}
+:root[data-theme="light"] .leaderRole,
+:root:not([data-theme="dark"]) .leaderRole{
+  color: var(--accent, var(--primary)) !important;
+  font-weight: 800;
+}
+:root[data-theme="light"] .leaderText,
+:root:not([data-theme="dark"]) .leaderText{
+  color: #0f172a;                    /* readable paragraph */
+}
+
+/* keep the left accent bar in light mode */
+:root[data-theme="light"] .leadershipItem::before,
+:root:not([data-theme="dark"]) .leadershipItem::before{
+  background: var(--accent, var(--primary));
+  opacity: .9;
+}
+
+/* ── per-card light palettes (1–4) ─────────────────────────── */
+/* Blue */
+:root[data-theme="light"] .leadershipList>li:nth-child(1),
+:root:not([data-theme="dark"]) .leadershipList>li:nth-child(1){
+  --accent: #1d4ed8;
+  --titleColorLight: #0b1220;
+  --cardBgLight: linear-gradient(180deg,#eef2ff 0%, #ffffff 100%);
+}
+/* Emerald */
+:root[data-theme="light"] .leadershipList>li:nth-child(2),
+:root:not([data-theme="dark"]) .leadershipList>li:nth-child(2){
+  --accent: #059669;
+  --titleColorLight: #0b1220;
+  --cardBgLight: linear-gradient(180deg,#ecfdf5 0%, #ffffff 100%);
+}
+/* Rose */
+:root[data-theme="light"] .leadershipList>li:nth-child(3),
+:root:not([data-theme="dark"]) .leadershipList>li:nth-child(3){
+  --accent: #dc2626;
+  --titleColorLight: #0b1220;
+  --cardBgLight: linear-gradient(180deg,#fff1f2 0%, #ffffff 100%);
+}
+/* Violet */
+:root[data-theme="light"] .leadershipList>li:nth-child(4),
+:root:not([data-theme="dark"]) .leadershipList>li:nth-child(4){
+  --accent: #7c3aed;
+  --titleColorLight: #0b1220;
+  --cardBgLight: linear-gradient(180deg,#f5f3ff 0%, #ffffff 100%);
+}
+/* === Dark-mode visibility hotfix for leadership cards === */
+:root[data-theme="dark"] .leadershipItem .leaderName {
+  color: #f9fafb !important;   /* bright white */
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .leadershipItem .leaderName {
+    color: #f9fafb !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+}
+
+/* Optional: brighten paragraph text in dark mode */
+:root[data-theme="dark"] .leadershipItem .leaderText {
+  color: #e5e7eb !important;
+}
+@media (prefers-color-scheme: dark) {
+  .leadershipItem .leaderText {
+    color: #e5e7eb !important;
+  }
+}
+
+/* Neutralize any light-only per-card title overrides in dark mode */
+:root[data-theme="dark"] .leadershipList > li {
+  --titleColor: unset;
+}
+/* --- LIGHT MODE: make leadership text readable --- */
+:root:not([data-theme="dark"]) .leadershipItem .leaderName {
+  color: #0b1220 !important;   /* strong title */
+}
+:root:not([data-theme="dark"]) .leadershipItem .leaderRole {
+  color: var(--accent, var(--primary)) !important;
+}
+:root:not([data-theme="dark"]) .leadershipItem .leaderText {
+  color: #0f172a !important;   /* body text */
+  opacity: 1 !important;       /* remove any faint look */
+}
+
+/* Keep dark-mode colors scoped to dark only */
+:root[data-theme="dark"] .leadershipItem .leaderName { color: #f9fafb !important; }
+:root[data-theme="dark"] .leadershipItem .leaderRole { color: #60a5fa !important; }
+:root[data-theme="dark"] .leadershipItem .leaderText { color: #e5e7eb !important; }
+
+
+/* === Mobile: glue the hero to the header (no extra gap) === */
+@media (max-width:1023px){
+  /* remove the extra +8px you currently add for spacing */
+  .home{
+    padding-top: calc(var(--donate-h) + var(--header-h)) !important;
+  }
+
+  /* kill any internal offsets on the hero block */
+  .hero{ padding-top: 0 !important; margin-top: 0 !important; }
+  .heroMainContent{ margin-top: 0 !important; }
+}
+/* === Leadership: bigger, mobile-first images (paste at END of file) === */
+
+/* Base: phones — make the headshots big and clear */
+.leadershipItem{
+  grid-template-columns: 112px 1fr !important; /* image | content */
+  align-items: center;
+}
+.leaderImg{
+  width: 112px !important;
+  height: 112px !important;
+  border-radius: 14px !important;
+  object-fit: cover;
+  box-shadow: 0 1px 8px rgba(0,0,0,.12);
+}
+
+/* Tiny phones: stack image on top if space is tight */
+@media (max-width: 360px){
+  .leadershipItem{
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto 1fr;
+    text-align: center;
+  }
+  .leaderImg{
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: center;
+    margin-bottom: 8px;
+  }
+  .leaderName, .leaderRole, .leaderText{
+    grid-column: 1 / -1 !important;
+  }
+}
+
+/* Tablets: bump size further */
+@media (min-width: 720px){
+  .leadershipItem{
+    grid-template-columns: 128px 1fr !important;
+  }
+  .leaderImg{
+    width: 128px !important;
+    height: 128px !important;
+  }
+}
+
+/* Large desktops: comfortable, prominent portraits */
+@media (min-width: 1200px){
+  .leadershipItem{
+    grid-template-columns: 140px 1fr !important;
+  }
+  .leaderImg{
+    width: 140px !important;
+    height: 140px !important;
+  }
+}
+
+/* Optional: tighten text scale a hair so bigger photos don’t crowd */
+.leaderName{ font-size: 1.1rem !important; }
+.leaderRole{ font-size: 0.98rem !important; }
+.leaderText{ font-size: 1rem !important; line-height: 1.6 !important; }
+/* === Leadership Section Overrides (mobile-first) === */
+
+.leadershipList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* Each card stacks image on top, then text */
+.leadershipItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Make the portrait bigger */
+.leaderImg {
+  width: 140px !important;   /* 🔑 big photo */
+  height: 140px !important;
+  border-radius: 14px;
+  object-fit: cover;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Name directly under image */
+.leaderName {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 6px 0 4px;
+  color: #111;
+}
+
+/* Role under the name */
+.leaderRole {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+/* Bio/description last */
+.leaderText {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+}
+
+/* Tablets: grid 2 per row */
+@media (min-width: 600px) {
+  .leadershipList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .leaderImg {
+    width: 160px !important;
+    height: 160px !important;
+  }
+}
+
+/* Desktop: grid 3 per row, larger photos */
+@media (min-width: 1024px) {
+  .leadershipList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .leaderImg {
+    width: 180px !important;
+    height: 180px !important;
+  }
+}
+/* === Leadership: bulletproof mobile fit (paste at END) === */
+
+/* 1) Single column on phones, sane gaps */
+.leadershipSection { padding: 16px 0 !important; }
+.leadershipList{
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding-inline: 12px !important; /* keep cards away from edges */
+}
+
+/* 2) Card: vertical stack, no overflow */
+.leadershipItem{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 14px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(0,0,0,.08) !important;
+  background: var(--card, #fff) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08) !important;
+
+  /* keep card inside viewport on tiny phones */
+  width: 100% !important;
+  max-width: 520px !important;
+  margin-inline: auto !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* 3) Kill old grid placements that forced two columns */
+.leaderImg,
+.leaderName,
+.leaderRole,
+.leaderText{
+  grid-column: auto !important;
+  grid-row: auto !important;
+}
+
+/* 4) Big but fluid portrait (won’t overflow narrow phones) */
+.leaderImg{
+  /* grows with screen, but always a square */
+  width: clamp(120px, 42vw, 180px) !important;
+  height: clamp(120px, 42vw, 180px) !important;
+  border-radius: 14px !important;
+  object-fit: cover !important;
+  margin-bottom: 10px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12) !important;
+
+}
+
+/* 5) Typography under the image */
+.leaderName{
+  font-size: clamp(1.05rem, 3.8vw, 1.25rem) !important;
+  font-weight: 800 !important;
+  margin: 4px 0 2px !important;
+}
+.leaderRole{
+  font-size: clamp(.95rem, 3.4vw, 1.05rem) !important;
+  font-weight: 700 !important;
+  margin: 0 0 8px !important;
+  color: var(--accent, var(--primary)) !important;
+}
+.leaderText{
+  font-size: clamp(.92rem, 3.6vw, 1rem) !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+}
+
+/* 6) Ensure long names/bios never break layout */
+.leadershipItem *{
+  max-width: 100% !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* 7) Slightly larger on small tablets; still stacked */
+@media (min-width: 480px){
+  .leaderImg{
+    width: clamp(140px, 34vw, 200px) !important;
+    height: clamp(140px, 34vw, 200px) !important;
+  }
+}
+
+/* 8) Switch to 2 columns on tablets */
+@media (min-width: 720px){
+  .leadershipList{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+  .leaderImg{
+    width: clamp(150px, 26vw, 220px) !important;
+    height: clamp(150px, 26vw, 220px) !important;
+  }
+}
+
+/* 9) 3 columns on desktop, with comfortable portrait size */
+@media (min-width: 1024px){
+  .leadershipList{
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .leaderImg{
+    width: 180px !important;
+    height: 180px !important;
+  }
+}
+/* === Leadership: image as full-width top banner === */
+.leadershipItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0; /* remove extra padding at top */
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+/* Make the image occupy full width of the card */
+.leaderImg {
+  width: 100% !important;     /* full width */
+  height: auto !important;    /* keep aspect ratio */
+  max-height: 260px;          /* optional: limit so it doesn’t get too tall */
+  object-fit: cover;          /* fill area nicely */
+  display: block;
+}
+
+/* Text content below the image */
+.leaderName,
+.leaderRole,
+.leaderText {
+  padding: 8px 12px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+/* === Leadership image: full-width banner + keep heads visible === */
+.leadershipItem{
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  text-align: center !important;
+}
+
+/* Make image a full-width banner and bias the crop upward */
+.leaderImg{
+  width: 100% !important;
+  aspect-ratio: 16 / 10 !important;         /* banner height; adjust if needed */
+  height: auto !important;
+  object-fit: cover !important;
+  object-position: center var(--face-y, 12%) !important; /* ⬅️ push crop UP */
+  display: block !important;
+  border-radius: 16px 16px 0 0 !important;  /* round only the top of the image */
+}
+
+/* Text block under the image */
+.leaderName, .leaderRole, .leaderText{
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 8px 14px !important;
+  margin: 0 !important;
+}
+
+.leaderName{ font-weight: 800; font-size: 1.12rem; margin-top: 6px !important; }
+.leaderRole{ font-weight: 700; font-size: 1rem; margin-top: 2px !important; color: var(--accent, var(--primary)) !important; }
+.leaderText{ font-size: .98rem; line-height: 1.6; margin: 8px 0 14px !important; }
+
+/* Optional: on very tall screens, show a bit more image height */
+@media (min-width: 1024px){
+  .leaderImg{ aspect-ratio: 16 / 9 !important; }
+}
+/* === Leadership Grid Balanced (2x2 for 4 leaders) === */
+
+/* Mobile: 1 per row */
+.leadershipList {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 20px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+/* Tablet: 2 per row */
+@media (min-width: 600px) {
+  .leadershipList {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+  }
+}
+
+/* Desktop: keep 2 per row (so 2x2 for 4 leaders) */
+@media (min-width: 1024px) {
+  .leadershipList {
+    grid-template-columns: repeat(2, 1fr) !important;
+    max-width: 1100px; /* optional: keeps grid centered */
+    margin: 0 auto;
+  }
+}
+
+/* Each leader card */
+.leadershipItem {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  border-radius: 14px;
+  background: #fff;
+  padding-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+/* Leadership card: banner shows whole portrait 
+./*leaderImg {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;   /* show the full image 
+  background: #fff;                  filler for empty space 
+  border-radius: 16px 16px 0 0 !important;
+  display: block;
+}*/
+/* === Desktop-only: imitate mobile image style for leaders === */
+@media (min-width: 1024px){
+  /* Balanced grid (2x2 for 4 leaders). Remove if you prefer 3 columns. */
+  .leadershipList{
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* Card shell stays stacked and centered like mobile */
+  .leadershipItem{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-radius: 16px !important;
+    background-color: red;
+  }
+
+  /* 🔑 Image behaves like mobile on desktop:
+     - show the whole portrait (no head/beard cut)
+     - centered
+     - sits on top of the text
+  */
+  .leaderImg{
+    width: 100% !important;
+    max-width: 420px !important;          /* desktop portrait width, tweak if you want */
+    aspect-ratio: 4 / 3 !important;       /* same feel as mobile banner box */
+    height: auto !important;
+    object-fit: contain !important;       /* show entire image (no crop) */
+    object-position: 50% 50% !important;
+    background: #fff;                     /* letterbox color (matches card) */
+    display: block !important;
+    border-radius: 16px 16px 0 0 !important;
+    margin: 0 auto !important;
+    
+  
+
+  }
+
+  /* Text spacing like mobile */
+  .leaderName,
+  .leaderRole,
+  .leaderText{
+    padding: 10px 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+/* === Desktop: remove blank side space on leader images === */
+@media (min-width: 1024px){
+  /* make the card stretch so the image can span edge-to-edge */
+  .leadershipItem{
+    align-items: stretch !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-radius: 16px !important;
+  }
+
+  /* Mobile-like behavior on desktop, no aspect-ratio box */
+  .leaderImg{
+    width: 100% !important;       /* fill card width */
+    max-width: none !important;
+    height: auto !important;      /* keep natural aspect */
+    aspect-ratio: auto !important;/* <-- remove forced ratio (kills side gaps) */
+    object-fit: contain !important; /* no cropping of head/beard */
+    object-position: 50% 50% !important;
+    background: transparent !important; /* no letterbox fill */
+    display: block !important;
+    border-radius: 16px 16px 0 0 !important;
+    margin: 0 !important;
+  }
+
+  /* keep text the same */
+  .leaderName,
+  .leaderRole,
+  .leaderText{
+    padding: 10px 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* === Leadership: clean, balanced, centered (CSS-only patch) === */
+
+/* center the whole section + heading */
+#leadership{
+  display:grid !important;
+  place-items:center !important;
+  padding: clamp(20px,4vw,48px) 0 !important;
+}
+#leadership .modalTitle{
+  text-align:center !important;
+  margin: 0 0 16px !important;
+}
+
+/* two tidy columns, centered */
+#leadership .leadershipList{
+  display:grid !important;
+  grid-template-columns: repeat(2, minmax(280px, 1fr)) !important;
+  gap: clamp(20px, 3vw, 32px) !important;
+  width: min(980px, 92vw) !important;
+  margin: 0 auto !important;
+  justify-items: center !important;
+}
+
+/* card shell */
+#leadership .leadershipItem{
+  width: 100%;
+  max-width: 460px;                    /* stop the “giant” look */
+  background: var(--card, #fff);
+  color: var(--text, #0f172a);
+  border: 1px solid color-mix(in oklab, var(--text), transparent 88%);
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.10);
+  padding: 16px;
+  text-align: center;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr; /* image, name, role, bio */
+  align-items: start;
+  overflow: hidden;
+
+  /* subtle entrance + hover polish */
+  opacity: 0;
+  transform: translateY(8px) scale(.98);
+  animation: leaderFade .45s ease forwards;
+  animation-delay: var(--delay, 0ms);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+#leadership .leadershipItem:hover{
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 14px 32px rgba(2,6,23,.14);
+}
+
+/* image: fixed, classy height; no more huge banner */
+#leadership .leaderImg{
+  width: 100% !important;
+  height: 220px !important;            /* <- key: makes cards even */
+  object-fit: cover !important;
+  border-radius: 10px !important;
+  margin: 0 0 12px !important;
+  box-shadow: 0 1px 6px rgba(0,0,0,.10);
+}
+
+/* typography: professional scale */
+#leadership .leaderName{
+  margin: 0 0 4px !important;
+  font-weight: 800 !important;
+  font-size: 1.15rem !important;
+  color: var(--text, #0b1220) !important;
+}
+#leadership .leaderRole{
+  margin: 0 0 10px !important;
+  font-size: .95rem !important;
+  font-weight: 700 !important;
+  color: var(--accent, var(--primary)) !important;
+}
+#leadership .leaderText{
+  margin: 0 !important;
+  font-size: .98rem !important;
+  line-height: 1.6 !important;
+  color: color-mix(in oklab, var(--text, #0f172a), transparent 8%) !important;
+}
+
+/* gentle entrance */
+@keyframes leaderFade{
+  to{ opacity:1; transform: translateY(0) scale(1); }
+}
+
+/* mobile: stack neatly */
+@media (max-width: 720px){
+  #leadership .leadershipList{ grid-template-columns: 1fr !important; }
+  #leadership .leadershipItem{ max-width: 560px; }
+}
+/* === Leadership: circular “main card” look (CSS-only, scoped) === */
+
+/* keep your grid as-is; just center the contents of each card */
+#leadership .leadershipItem{
+  display: grid !important;
+  grid-template-rows: auto auto auto 1fr;
+  justify-items: center;
+  text-align: center;
+  padding: clamp(16px, 2.5vw, 22px);
+  background: var(--card, #fff);
+  border-radius: 18px;                 /* card still rounded */
+  border: 1px solid color-mix(in oklab, var(--text), transparent 88%);
+  box-shadow: 0 10px 26px rgba(2,6,23,.10);
+  overflow: hidden;
+}
+
+/* make the portrait perfectly circular, centered, with a soft ring */
+#leadership .leaderImg{
+  width: clamp(140px, 18vw, 200px) !important;
+  aspect-ratio: 1 / 1 !important;      /* square -> circle */
+  border-radius: 999px !important;      /* circle */
+  object-fit: cover !important;
+  margin: 4px auto 12px !important;
+  box-shadow:
+    0 2px 10px rgba(0,0,0,.18),
+    0 0 0 6px color-mix(in oklab, var(--accent, var(--primary)), transparent 82%);
+  position: relative;
+  isolation: isolate;
+}
+
+/* subtle hover pulse for the circle (desktop only) */
+@media (hover: hover) and (pointer: fine){
+  #leadership .leaderImg{
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  #leadership .leaderImg:hover{
+    transform: scale(1.03);
+    box-shadow:
+      0 6px 20px rgba(0,0,0,.22),
+      0 0 0 8px color-mix(in oklab, var(--accent, var(--primary)), transparent 78%);
+  }
+}
+
+/* tidy, centered typography under the circle */
+#leadership .leaderName{
+  margin: 6px 0 2px !important;
+  font-weight: 800 !important;
+  font-size: clamp(1rem, 1.6vw, 1.2rem) !important;
+}
+#leadership .leaderRole{
+  margin: 0 0 10px !important;
+  font-weight: 700 !important;
+  color: var(--accent, var(--primary)) !important;
+  font-size: .95rem !important;
+}
+#leadership .leaderText{
+  margin: 0 !important;
+  font-size: .98rem !important;
+  line-height: 1.6 !important;
+  opacity: .95;
+  max-width: 56ch;                     /* keep bios readable */
+}
+
+/* small entrance animation just for the circle + text */
+#leadership .leadershipItem{
+  opacity: 0;
+  transform: translateY(8px) scale(.98);
+  animation: leaderCircleIn .45s ease forwards;
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes leaderCircleIn{
+  to{ opacity:1; transform: translateY(0) scale(1); }
+}
+
+/* dark mode polish */
+:root[data-theme="dark"] #leadership .leaderImg{
+  box-shadow:
+    0 2px 10px rgba(0,0,0,.5),
+    0 0 0 6px color-mix(in oklab, var(--accent, #60a5fa), transparent 84%);
+}
+/* === Leadership: 2-cards cross-fade/slide, auto-rotating === */
+.leaderCarousel{
+  /* layout: two across, responsive */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: clamp(12px, 2.5vw, 22px);
+  position: relative;
+  overflow: hidden;
+  --step: 4s;                 /* fallback if not set inline */
+  --cycle: calc(var(--step) * 6); /* long enough for many members */
+}
+
+.leaderCarousel .leadershipItem{
+  /* start hidden */
+  opacity: 0;
+  transform: translateY(18px) scale(.98);
+  will-change: opacity, transform, box-shadow, filter;
+
+  /* main cycle: each card takes a turn */
+  animation: leaderFade var(--cycle) linear infinite both,
+             floaty 7s ease-in-out infinite;
+  animation-delay: calc(var(--i) * var(--step));
+  /* subtle card chrome */
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  transition: box-shadow .25s ease, transform .25s ease;
+}
+
+/* offset the odd ones by half a step → two show at the same time */
+.leaderCarousel .leadershipItem:nth-child(odd){
+  animation-delay: calc(var(--i) * var(--step) + (var(--step) / 2));
+}
+
+/* nice hover focus */
+.leaderCarousel .leadershipItem:hover{
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 16px 36px rgba(0,0,0,.12);
+}
+
+/* accent glow (uses your inline --accent, falls back softly) */
+.leaderCarousel .leadershipItem::after{
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  pointer-events: none;
+  background: radial-gradient(60% 60% at 50% 0%,
+              color-mix(in oklab, var(--accent, #4f46e5) 35%, transparent) 0%,
+              transparent 70%);
+  opacity: .0;
+  transition: opacity .3s ease;
+}
+.leaderCarousel .leadershipItem:hover::after{ opacity: .35; }
+
+/* Images behave nicely in the new animation */
+.leaderCarousel .leaderImg{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+  display: block;
+}
+
+/* === Keyframes ===
+   0-8%: fade in start; 10-45%: fully visible; 55-100%: fade out
+   Because odd items are delayed by 1/2 step, two are visible together. */
+@keyframes leaderFade{
+  0%, 8%   { opacity: 0; transform: translateY(18px) scale(.98); filter: saturate(.9); }
+  10%, 45% { opacity: 1; transform: translateY(0) scale(1);     filter: saturate(1); }
+  55%,100% { opacity: 0; transform: translateY(-12px) scale(.985); filter: saturate(.92); }
+}
+
+/* subtle float effect so the cards feel alive */
+@keyframes floaty{
+  0%   { transform: translateY(0) scale(1); }
+  50%  { transform: translateY(-4px) scale(1.003); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Pause animation when user hovers the section */
+#leadership:hover .leadershipItem{
+  animation-play-state: paused;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .leaderCarousel .leadershipItem,
+  #leadership:hover .leadershipItem{
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Mobile: stack to 1 across but keep the “two at a time” rhythm */
+@media (max-width: 640px){
+  .leaderCarousel{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Gap fix: tighter cross-fade + instant first pair === */
+
+/* Use a tighter keyframe so at least one card is always visible */
+@keyframes leaderFadeTight{
+  /* quick fade in */
+  0%, 3%   { opacity: 0; transform: translateY(14px) scale(.985); filter: saturate(.92); }
+  /* stay fully visible almost the whole step */
+  6%, 94%  { opacity: 1; transform: translateY(0) scale(1);        filter: saturate(1); }
+  /* quick fade out */
+  97%,100% { opacity: 0; transform: translateY(-8px) scale(.988);  filter: saturate(.95); }
+}
+
+/* swap animation to the tighter version (keeps your floaty effect) */
+.leaderCarousel .leadershipItem{
+  animation-name: leaderFadeTight, floaty !important;
+}
+
+/* Show something immediately on first paint:
+   make the first two leaders visible right away */
+.leaderCarousel .leadershipItem:nth-child(-n+2){
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation-delay: 0s, 0s !important; /* first cycle starts instantly */
+}
+
+/* Keep the “two at a time” rhythm but reduce overlap blanking */
+.leaderCarousel .leadershipItem:nth-child(odd){
+  /* half-step offset remains, but with a tiny negative nudge for seamless crossfade */
+  animation-delay: calc(var(--i) * var(--step) + (var(--step) / 2) - 120ms), 0s !important;
+}
+
+/* Optional: if you want the overall cycle faster without edits in JSX,
+   uncomment the next rule to shorten each step */
+/*
+.leaderCarousel{ --step: 3.2s !important; }
+*/
+/* === Leadership card size: smaller & tighter === */
+.leaderCarousel{
+  gap: clamp(8px, 1.8vw, 14px) !important;            /* tighter spacing */
+  padding-inline: clamp(4px, 1vw, 10px);
+}
+
+/* shrink each card while keeping two across */
+.leaderCarousel .leadershipItem{
+  max-width: clamp(220px, 40vw, 300px) !important;     /* narrower cards */
+  margin-inline: auto;
+  border-radius: 14px;
+}
+
+/* image smaller, avoid cropping */
+.leaderCarousel .leaderImg{
+  max-height: clamp(120px, 22vw, 160px) !important;
+  object-fit: contain !important;
+  border-radius: 14px 14px 0 0;
+}
+
+/* typography scale down */
+.leaderCarousel .leaderName{
+  font-size: clamp(.9rem, 2.4vw, 1.05rem) !important;
+  font-weight: 700;
+  margin: 8px 12px 2px;
+}
+.leaderCarousel .leaderRole{
+  font-size: clamp(.78rem, 2.2vw, .95rem) !important;
+  margin: 0 12px 6px;
+  opacity: .9;
+}
+.leaderCarousel .leaderText{
+  font-size: clamp(.78rem, 2vw, .92rem) !important;
+  line-height: 1.35;
+  margin: 0 12px 12px 12px;
+}
+
+/* slightly softer shadows on smaller cards */
+.leaderCarousel .leadershipItem{
+  box-shadow: 0 8px 18px rgba(0,0,0,.08) !important;
+}
+.leaderCarousel .leadershipItem:hover{
+  box-shadow: 0 12px 26px rgba(0,0,0,.12) !important;
+}
+
+/* Mobile: keep 1 column but still compact */
+@media (max-width: 640px){
+  .leaderCarousel{
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .leaderCarousel .leadershipItem{
+    max-width: 92% !important;
+  }
+  .leaderCarousel .leaderImg{
+    max-height: 150px !important;
+  }
+}
+/* === Leadership layout: 4-up on desktop, 2-up on tablet, 1-up on mobile === */
+
+/* Base (mobile first): 1 column */
+.leaderCarousel{
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: clamp(8px, 1.8vw, 14px);
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 700px){
+  .leaderCarousel{
+    grid-template-columns: repeat(2, minmax(200px, 1fr)) !important;
+  }
+}
+
+/* Desktop: 4 columns in a single line */
+@media (min-width: 1024px){
+  .leaderCarousel{
+    grid-template-columns: repeat(4, minmax(200px, 1fr)) !important;
+    gap: clamp(10px, 1.6vw, 18px);
+  }
+  /* Let cards expand to fill the grid cells */
+  .leaderCarousel .leadershipItem{
+    max-width: none !important;
+    width: 100%;
+  }
+  /* Tweak image height so the row stays compact */
+  .leaderCarousel .leaderImg{
+    max-height: clamp(140px, 14vw, 180px) !important;
+    object-fit: cover;
+  }
+}
+/* === REMOVE ALL SPACING between leader name and role === */
+.leaderName {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+}
+
+.leaderRole {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  line-height: 1.1 !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: var(--accent, #3b82f6) !important;
+}
+/* --- Map section (mobile first) --- */
+.mapSection {
+  padding: 20px 0;
+}
+
+.mapTitle {
+  margin: 0 0 10px;
+  font-weight: 800;
+  font-size: 1.1rem;               /* mobile base */
+  text-align: center;
+  color: var(--text);
+}
+
+.mapCard {
+  width: 94vw;                      /* mobile: edge-to-edge feel */
+  margin: 0 auto;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid color-mix(in oklab, var(--text), transparent 88%);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 12px;
+}
+
+/* responsive frame */
+.mapFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;             /* good on phones; tall enough */
+  overflow: hidden;
+  border-radius: 10px;
+}
+.mapFrame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.mapAddress {
+  margin: 10px 0 0;
+  font-style: normal;
+  text-align: center;
+  opacity: .9;
+  font-size: .95rem;
+}
+
+.mapBtn {
+  display: inline-block;
+  margin: 12px auto 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--primary, #2563eb);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+.mapBtn:hover { filter: brightness(.95); }
+
+/* --- Tablet and up --- */
+@media (min-width: 640px) {
+  .mapSection { padding: 28px 0; }
+  .mapTitle   { font-size: 1.25rem; }
+  .mapCard    { width: min(92vw, 860px); border-radius: 14px; padding: 14px; }
+  .mapFrame   { border-radius: 12px; }
+}
+
+/* --- Desktop / large screens --- */
+@media (min-width: 1024px) {
+  .mapSection { padding: 40px 0; }
+  .mapTitle   { font-size: 1.45rem; }
+  .mapCard    { width: min(92vw, 1100px); border-radius: 16px; padding: 18px; }
+  .mapFrame   { aspect-ratio: 16 / 9; border-radius: 12px; }
+}
+/* --- Mobile centering fix --- */
+.mapSection{
+  /* center the whole section horizontally */
+  display: grid;
+  place-items: center;
+  padding: 20px 0;
+  padding-bottom: max(28px, env(safe-area-inset-bottom) + 80px); /* leave room for FAB */
+}
+
+.mapCard{
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 420px;          /* phone width */
+  margin: 0 auto;            /* hard center */
+}
+
+/* make sure the iframe itself doesn’t add any stray spacing */
+.mapFrame { width: 100%; }
+.mapFrame iframe{ display: block; }
+
+/* Tablet+ grow nicely but stay centered */
+@media (min-width: 640px){
+  .mapCard{ max-width: 720px; }
+}
+@media (min-width: 1024px){
+  .mapCard{ max-width: 1100px; }
+}

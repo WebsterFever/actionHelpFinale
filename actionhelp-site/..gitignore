@@ -1,0 +1,13 @@
+@"
+# ignore env files anywhere in this submodule
+**/.env
+**/.env.*
+!**/.env.example
+
+# usual frontend noise (optional)
+node_modules/
+dist/
+build/
+coverage/
+.DS_Store
+"@ | Set-Content -Encoding UTF8 .gitignore

@@ -1,0 +1,22 @@
+.results {
+  background: #f9f9f9;
+  padding: 1rem;
+  margin: 1rem auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 800px;
+}
+
+.results h3 {
+  margin-bottom: 0.5rem;
+}
+
+.results ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.results li {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #ddd;
+}

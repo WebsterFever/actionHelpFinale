@@ -1,0 +1,369 @@
+/* Fixed to corner, above everything */
+.chatbotContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2147483647;
+}
+
+/* Small round toggle (visible only when closed) */
+.toggleButton {
+  position: relative;          /* for badge positioning */
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 999px;
+  background: #0ea5e9;         /* sky-500 */
+  color: #fff;
+  font-size: 22px;
+  line-height: 56px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(14, 165, 233, .35);
+  transition: transform .2s ease, filter .2s ease;
+}
+.toggleButton:hover { transform: translateY(-1px); filter: brightness(.95); }
+
+/* Unread badge (red) with soft pulse */
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #ef4444;         /* red-500 */
+  color: #fff;
+  font-weight: 800;
+  font-size: 12px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, .15);
+}
+.badge::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid rgba(239, 68, 68, .45);
+  animation: ping 1.5s cubic-bezier(0,0,.2,1) infinite;
+}
+@keyframes ping {
+  0%   { transform: scale(0.9); opacity: .9; }
+  80%  { transform: scale(1.4); opacity: 0; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Hide toggle when open (JS already does, this is extra safety) */
+.open .toggleButton { display: none !important; }
+
+/* Chat window */
+.chatWindow {
+  position: relative;
+  z-index: 2;
+  width: 340px;
+  max-height: min(70vh, 520px);
+  background: #ffffff;
+  color: #111;
+  border: 1px solid #d0d7de;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(0,0,0,.25);
+  margin-top: 8px;
+}
+@media (max-width: 420px) { .chatWindow { width: min(92vw, 380px); } }
+
+/* Close button in the top-right */
+.closeTop {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(0,0,0,.06);
+  color: #111;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 3;
+  transition: background .2s ease, transform .2s ease;
+}
+.closeTop:hover { background: rgba(0,0,0,.1); transform: translateY(-1px); }
+
+/* Header */
+.chatHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  background: #f6f8fa;
+  border-bottom: 1px solid #e6e8eb;
+}
+.chatTitle { font-weight: 800; font-size: 16px; }
+
+/* Messages area */
+.messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+/* Bubbles */
+.bot {
+  background: #045375;
+  color: #fff;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-align: left;
+}
+.user {
+  background: #0ea5e9;
+  color: #fff;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-align: right;
+}
+
+/* Input row */
+.inputArea {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-top: 1px solid #e6e8eb;
+  background: #fdfdfd;
+}
+.inputArea input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d0d7de;
+  font-size: 14px;
+}
+.sendButton {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter .2s ease, transform .2s ease;
+}
+.sendButton:hover { filter: brightness(.96); transform: translateY(-1px); }
+/* Positioning container for the FAB and label */
+.fabWrap{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;      /* same corner as your toggle button */
+  right: 20px;
+  bottom: 20px;
+  z-index: 50;
+}
+
+/* The “Chat with us” pill */
+.fabLabel{
+  user-select: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: var(--primary, #0ea5e9);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(0,0,0,.18);
+  white-space: nowrap;
+  animation: fabPulse 1.4s ease-in-out infinite;
+}
+
+/* gentle pulse animation */
+@keyframes fabPulse{
+  0%,100%{ transform: scale(1); opacity: 1; }
+  50%{ transform: scale(1.05); opacity: .92; }
+}
+
+/* Hide the label on very small screens */
+@media (max-width: 420px){
+  .fabLabel{ display: none; }
+}
+/* ===== Floating button + label (desktop) ===== */
+.fabWrap{
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Your existing circular button should already exist; ensure badge sits properly */
+.toggleButton{
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: #12a3eb;
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
+  cursor: pointer;
+}
+.toggleButton:hover{ filter: brightness(1.05); }
+.badge{
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #ff4d5a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 0 3px #fff, 0 6px 16px rgba(255, 77, 90, 0.5);
+}
+
+/* Label pill (desktop) */
+.fabLabel{
+  user-select: none;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.98rem;
+  background: var(--primary, #0ea5e9);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(0,0,0,.18);
+  white-space: nowrap;
+  animation: fabPulse 1.4s ease-in-out infinite;
+  transform-origin: right center;
+}
+.fabLabel:hover{ filter: brightness(1.05); }
+
+@keyframes fabPulse{
+  0%,100%{ transform: scale(1); opacity: 1; }
+  50%{ transform: scale(1.06); opacity: .95; }
+}
+
+/* Hide the label on small screens; keep only the round FAB */
+@media (max-width: 640px){
+  .fabLabel{ display: none; }
+}
+
+/* ===== Chat window (keep your existing styles; minimal baseline below) ===== */
+.chatWindow{
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: min(360px, 92vw);
+  height: 60vh;
+  background: var(--card, #fff);
+  color: var(--text, #111);
+  border-radius: 16px;
+  box-shadow: 0 18px 44px rgba(0,0,0,.22);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 60;
+}
+
+.closeTop{
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text, #111);
+}
+
+.messages{
+  padding: 56px 12px 12px 12px;
+  overflow-y: auto;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bot{
+  align-self: flex-start;
+  background: rgba(14,165,233,.12);
+  color: var(--text, #0b2942);
+  border: 1px solid rgba(14,165,233,.25);
+  padding: 10px 12px;
+  border-radius: 12px;
+  max-width: 88%;
+}
+.user{
+  align-self: flex-end;
+  background: var(--primary, #0ea5e9);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  max-width: 88%;
+}
+
+.inputArea{
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid rgba(0,0,0,.08);
+  background: var(--background, #fafafa);
+}
+.inputArea input{
+  flex: 1;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  background: #fff;
+}
+.sendButton{
+  border: none;
+  border-radius: 10px;
+  background: var(--primary, #0ea5e9);
+  color: #fff;
+  padding: 0 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.sendButton:hover{ filter: brightness(1.05); }
+/* Mobile: show the label and stack it above the button */
+@media (max-width: 640px){
+  .fabWrap{
+    right: 12px;
+    bottom: 12px;
+    gap: 6px;
+    flex-direction: column-reverse;   /* label above, button below */
+    align-items: flex-end;
+  }
+
+  .fabLabel{
+    display: inline-block;            /* make it visible */
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    box-shadow: 0 8px 22px rgba(0,0,0,.18);
+    animation: fabPulse 1.4s ease-in-out infinite;
+  }
+}

@@ -1,0 +1,148 @@
+/* ===== Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700&display=swap');
+
+body { font-family: 'Manrope', sans-serif; }
+h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+/* ===== Sidebar (Desktop default) ===== */
+.aside {
+  background-color: var(--card);
+  color: var(--text);
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 260px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.aside .section { margin-bottom: 2rem; }
+
+.aside .sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+}
+
+/* Scope list & links to sidebar only */
+.aside ul { list-style: none; padding: 0; margin: 0; }
+.aside li { margin-bottom: 0.75rem; }
+
+.aside a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 6px 12px;
+  display: block;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+.aside a:hover,
+.aside a.active {
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Toggle button (shown on mobile/tablet) */
+.aside .sectionToggle {
+  display: none;               /* hidden on desktop */
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+  padding: 0.75rem 0;
+}
+
+/* ===== Phone + iPad (≤1023px): behave like mobile accordion ===== */
+@media (max-width: 1023px) {
+  .aside {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: var(--background);
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .aside .section {
+    margin: 0;
+    background-color: var(--card);
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  /* Hide static titles, use toggles instead */
+  .aside .sectionTitle { display: none; }
+
+  .aside .sectionToggle {
+    display: flex;                           /* visible on ≤1023px */
+    background-color: var(--card);
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .aside .sectionToggle::after {
+    content: '▸';
+    margin-left: auto;
+    transition: transform 0.3s ease;
+  }
+  .aside .section.open .sectionToggle::after {
+    transform: rotate(90deg);
+  }
+
+  /* Collapsible lists */
+  .aside .section ul {
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+    transition: max-height 0.4s ease;
+  }
+  .aside .section.open ul {
+    display: block;
+    max-height: 500px;                /* enough to show items */
+    overflow-y: auto;
+    scrollbar-width: thin;            /* Firefox */
+  }
+
+  /* WebKit scrollbars */
+  .aside .section.open ul::-webkit-scrollbar { width: 6px; }
+  .aside .section.open ul::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 6px;
+  }
+
+  /* Smaller link text inside accordion */
+  .aside ul li a { font-size: 0.9rem; padding: 4px 0; background: none; }
+}
+
+/* ===== Optional: Donate highlight badge/link inside sidebar ===== */
+.flashDonate {
+  font-weight: bold;
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 8px;
+  animation: flashGlow 1.2s ease-in-out infinite;
+  box-shadow: 0 0 8px rgba(255,0,0,0.5);
+  transition: background 0.3s ease;
+}
+.flashDonate:hover { background-color: #ff3333; color: #fff; }
+
+@keyframes flashGlow {
+  0%   { transform: scale(1);    box-shadow: 0 0 8px rgba(255,0,0,0.4); }
+  50%  { transform: scale(1.05); box-shadow: 0 0 16px rgba(255,0,0,0.8); }
+  100% { transform: scale(1);    box-shadow: 0 0 8px rgba(255,0,0,0.4); }
+}
