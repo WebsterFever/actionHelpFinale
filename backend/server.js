@@ -148,32 +148,22 @@ const PORT = process.env.PORT || 5000;
 
 const { DATABASE_URL = "", NODE_ENV = "development" } = process.env;
 
-/* ---------- Neon Wake-Up ---------- */
-/** Ping Neon once to wake a suspended compute before Sequelize connects. */
+/* ---------- Neon Wake-Up Helper ---------- */
 function wakeNeon(urlString) {
   try {
     const u = new URL(urlString);
-    if (!/neon\.tech$/i.test(u.hostname)) return Promise.resolve();
-
+    if (!/neon\.tech$/i.test(u.hostname)) return;
     const opts = {
       method: "GET",
       hostname: u.hostname,
       path: "/",
       timeout: 3000,
     };
-
-    return new Promise((resolve) => {
-      const req = https.request(opts, () => resolve());
-      req.on("error", () => resolve());
-      req.on("timeout", () => {
-        req.destroy();
-        resolve();
-      });
-      req.end();
-    });
-  } catch {
-    return Promise.resolve();
-  }
+    const req = https.request(opts, () => {});
+    req.on("error", () => {});
+    req.on("timeout", () => req.destroy());
+    req.end();
+  } catch {}
 }
 
 /* ---------- Database Connection ---------- */
@@ -183,21 +173,13 @@ const needsSSL =
 const sequelize = new Sequelize(DATABASE_URL, {
   dialect: "postgres",
   logging: false,
-
   dialectOptions: needsSSL
     ? {
         ssl: { require: true, rejectUnauthorized: false },
         keepAlive: true,
       }
     : {},
-
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10_000,
-    acquire: 30_000,
-  },
-
+  pool: { max: 5, min: 0, idle: 10000, acquire: 30000 },
   retry: {
     max: 3,
     match: [
@@ -211,7 +193,7 @@ const sequelize = new Sequelize(DATABASE_URL, {
 
 /* ---------- Initialize Database ---------- */
 async function initDatabase() {
-  await wakeNeon(DATABASE_URL);
+  wakeNeon(DATABASE_URL);
   console.log("🌙 Waking Neon compute if suspended...");
 
   for (let attempt = 1; attempt <= 3; attempt++) {
@@ -230,26 +212,31 @@ async function initDatabase() {
   }
 }
 
+/* ---------- Auto Keep-Alive (every 4 minutes) ---------- */
+setInterval(() => {
+  wakeNeon(DATABASE_URL);
+  console.log("💤 Keep-alive ping sent to Neon compute.");
+}, 4 * 60 * 1000);
+
 /* ---------- Middleware ---------- */
 const allowedOrigins = new Set([
   "https://action-help-finale-sixh-ql4c248wv-websterfevers-projects.vercel.app",
   "https://actionhelp.org",
   "https://www.actionhelp.org",
-  "http://localhost:5173", // Vite dev
-  "http://localhost:3000", // CRA dev
+  "http://localhost:5173",
+  "http://localhost:3000",
 ]);
 
 app.use(
   cors({
-    origin: function (origin, callback) {
+    origin(origin, callback) {
       if (!origin) return callback(null, true);
       if (allowedOrigins.has(origin)) {
         console.log("✅ CORS allowed for:", origin);
         return callback(null, true);
-      } else {
-        console.warn("🚫 CORS blocked for:", origin);
-        return callback(new Error("Not allowed by CORS"));
       }
+      console.warn("🚫 CORS blocked for:", origin);
+      callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
   })
@@ -264,9 +251,8 @@ app.use("/api/donate", donateRoutes);
 const adminRoutes = require("./routes/admin");
 app.use("/api/admin", adminRoutes);
 
-// Simple health check for Koyeb
+// Health check
 app.get("/healthz", (_, res) => res.status(200).send("ok"));
-
 app.get("/", (_, res) => res.status(200).send("Server is healthy ✅"));
 
 /* ---------- Start Server ---------- */
