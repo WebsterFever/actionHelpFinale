@@ -67,9 +67,15 @@ const allowedOrigins = new Set([
 
 app.use(
   cors({
-    origin(origin, cb) {
-      if (!origin || allowedOrigins.has(origin)) return cb(null, true);
-      cb(new Error("Not allowed by CORS"));
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow mobile apps / curl
+      if (allowedOrigins.has(origin)) {
+        console.log("✅ CORS allowed for:", origin);
+        return callback(null, true);
+      } else {
+        console.warn("🚫 CORS blocked for:", origin);
+        return callback(new Error("Not allowed by CORS"));
+      }
     },
     credentials: true,
   })
