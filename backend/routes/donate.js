@@ -73,6 +73,7 @@ router.post("/", async (req, res) => {
 
     // ✅ One-time Payment (unchanged)
     const paymentIntent = await stripe.paymentIntents.create({
+      
       amount: parseInt(amount) * 100,
       currency: "usd",
       payment_method: paymentMethodId,
