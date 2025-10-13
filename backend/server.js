@@ -58,7 +58,7 @@ sequelize
 
 /* ---------- Middleware ---------- */
 const allowedOrigins = new Set([
-  "https://action-help-finale-sixh-ql4c248wv-websterfevers-projects.vercel.app/",
+  "https://action-help-finale-sixh-ql4c248wv-websterfevers-projects.vercel.app",
   "https://actionhelp.org",
   "https://www.actionhelp.org",
   "http://localhost:5173", // Vite dev (optional)
