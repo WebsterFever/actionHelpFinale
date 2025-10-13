@@ -126,7 +126,7 @@ const Donate = () => {
         return;
       }
 
-      const response = await axios.post("https://supposed-nicolina-1websterfever-portfolio-01-9d79ceed.koyeb.app", {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/donate`, {
         paymentMethodId: paymentMethod.id,
         amount: form.custom || form.amount,
         email: form.email,
@@ -158,7 +158,7 @@ const Donate = () => {
     if (!form.lastName) newErrors.lastName = "Last name is required.";
     if (!form.email) newErrors.email = "Email is required.";
     if (!form.phone) newErrors.phone = "Phone number is required.";
-   
+
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -201,9 +201,8 @@ const Donate = () => {
                 <button
                   key={val}
                   onClick={() => handleAmountSelect(val)}
-                  className={`${styles.amountBtn} ${
-                    form.amount === val.toString() ? styles.selected : ""
-                  }`}
+                  className={`${styles.amountBtn} ${form.amount === val.toString() ? styles.selected : ""
+                    }`}
                 >
                   ${val}
                 </button>
