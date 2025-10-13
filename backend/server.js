@@ -39,16 +39,45 @@ const { Sequelize } = require("sequelize");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-/* ---------- Database Connection ---------- */
 const { DATABASE_URL, NODE_ENV } = process.env;
+
+/* ---------- Database Connection ---------- */
+const needsSSL =
+  NODE_ENV === "production" ||
+  /neon\.tech/i.test(DATABASE_URL || "");
 
 const sequelize = new Sequelize(DATABASE_URL, {
   dialect: "postgres",
   logging: false,
-  dialectOptions:
-    NODE_ENV === "production"
-      ? { ssl: { require: true, rejectUnauthorized: false } }
-      : {},
+
+  // ✅ Neon needs SSL. Setting it explicitly avoids ECONNREFUSED.
+  dialectOptions: needsSSL
+    ? {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      }
+    : {},
+
+  // ✅ Helpful in serverless/containers
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10_000,
+    acquire: 30_000,
+  },
+
+  // ✅ Light retry on transient network issues
+  retry: {
+    max: 3,
+    match: [
+      /SequelizeConnection(?:Error|RefusedError|TimedOutError)/,
+      /ETIMEDOUT/i,
+      /ECONNRESET/i,
+      /ECONNREFUSED/i,
+    ],
+  },
 });
 
 sequelize
