@@ -87,6 +87,9 @@ app.use("/api/admin", adminRoutes);
 // Simple health check for Koyeb
 app.get("/healthz", (_, res) => res.status(200).send("ok"));
 
+app.get("/", (_, res) => res.status(200).send("Server is healthy ✅"));
+
+
 /* ---------- Start Server ---------- */
 sequelize
   .sync({ alter: true })
