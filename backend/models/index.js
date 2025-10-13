@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
 );
 
 // ✅ Passe o DataTypes aqui corretamente
-const Donation = require("./Donation")(sequelize, DataTypes);
+const Donation = require("./donation")(sequelize, DataTypes);
 
 module.exports = {
   sequelize,
