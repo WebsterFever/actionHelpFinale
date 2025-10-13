@@ -199,16 +199,20 @@ router.post("/", async (req, res) => {
     }
 
     // ✅ One-time payment
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: numericAmount * 100,
-      currency: "usd",
-      payment_method: paymentMethodId,
-      receipt_email: email,
-      confirm: true,
-      description: `One-time donation from ${firstName} ${lastName}`,
-      automatic_payment_methods: { enabled: true },
-      expand: ["charges", "payment_method"],
-    });
+   const paymentIntent = await stripe.paymentIntents.create({
+  amount: numericAmount * 100,
+  currency: "usd",
+  payment_method: paymentMethodId,
+  receipt_email: email,
+  confirm: true,
+  description: `One-time donation from ${firstName} ${lastName}`,
+  automatic_payment_methods: {
+    enabled: true,
+    allow_redirects: "never", // 👈 this line fixes the issue
+  },
+  expand: ["charges", "payment_method"],
+});
+
 
     // 🔍 Extract card details (if available)
     const card =
