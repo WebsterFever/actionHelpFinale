@@ -137,6 +137,115 @@
 //     console.error("❌ Failed to sync DB:", err);
 //     process.exit(1);
 //   });
+// require("dotenv").config();
+// const express = require("express");
+// const cors = require("cors");
+// const { Sequelize } = require("sequelize");
+
+// const app = express();
+// const PORT = process.env.PORT || 5000;
+
+// const { DATABASE_URL = "", NODE_ENV = "development" } = process.env;
+
+// // ✅ ADD THIS VALIDATION
+// if (!DATABASE_URL || DATABASE_URL === "" || !DATABASE_URL.startsWith('postgresql://')) {
+//   console.error("❌ FATAL: DATABASE_URL is missing or invalid!");
+//   console.error("Current DATABASE_URL:", DATABASE_URL);
+//   process.exit(1);
+// }
+
+// /* ---------- Database Connection ---------- */
+// const needsSSL = NODE_ENV === "production";
+
+// const sequelize = new Sequelize(DATABASE_URL, {
+//   dialect: "postgres",
+//   logging: false,
+//   dialectOptions: needsSSL
+//     ? {
+//         ssl: { require: true, rejectUnauthorized: false },
+//         keepAlive: true,
+//       }
+//     : {},
+//   pool: { max: 5, min: 0, idle: 10000, acquire: 30000 },
+//   retry: {
+//     max: 3,
+//     match: [
+//       /SequelizeConnection(?:Error|RefusedError|TimedOutError)/,
+//       /ETIMEDOUT/i,
+//       /ECONNRESET/i,
+//       /ECONNREFUSED/i,
+//     ],
+//   },
+// });
+
+// /* ---------- Initialize Database ---------- */
+// async function initDatabase() {
+//   for (let attempt = 1; attempt <= 3; attempt++) {
+//     try {
+//       await sequelize.authenticate();
+//       console.log("✅ Connected to PostgreSQL database (Render)");
+//       return;
+//     } catch (err) {
+//       console.log(`⏳ DB connection attempt ${attempt} failed...`);
+//       if (attempt === 3) {
+//         console.error("❌ Database connection failed:", err);
+//         throw err;
+//       }
+//       await new Promise((r) => setTimeout(r, 1000 * attempt));
+//     }
+//   }
+// }
+
+// /* ---------- Middleware ---------- */
+// const allowedOrigins = new Set([
+//   "https://action-help-finale-sixh-ql4c248wv-websterfevers-projects.vercel.app",
+//   "https://actionhelp.org",
+//   "https://www.actionhelp.org",
+//   "http://localhost:5173",
+//   "http://localhost:3000",
+// ]);
+
+// app.use(
+//   cors({
+//     origin(origin, callback) {
+//       if (!origin) return callback(null, true);
+//       if (allowedOrigins.has(origin)) {
+//         console.log("✅ CORS allowed for:", origin);
+//         return callback(null, true);
+//       }
+//       console.warn("🚫 CORS blocked for:", origin);
+//       callback(new Error("Not allowed by CORS"));
+//     },
+//     credentials: true,
+//   })
+// );
+
+// app.use(express.json());
+
+// /* ---------- Routes ---------- */
+// const donateRoutes = require("./routes/donate");
+// app.use("/api/donate", donateRoutes);
+
+// const adminRoutes = require("./routes/admin");
+// app.use("/api/admin", adminRoutes);
+
+// // Health check
+// app.get("/healthz", (_, res) => res.status(200).send("ok"));
+// app.get("/", (_, res) => res.status(200).send("Server is healthy ✅"));
+
+// /* ---------- Start Server ---------- */
+// (async () => {
+//   try {
+//     await initDatabase();
+//     await sequelize.sync({ alter: true });
+//     app.listen(PORT, () =>
+//       console.log(`✅ Server running on port ${PORT}`)
+//     );
+//   } catch (err) {
+//     console.error("❌ Startup failed:", err);
+//     process.exit(1);
+//   }
+// })();
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -232,6 +341,21 @@ app.use("/api/admin", adminRoutes);
 // Health check
 app.get("/healthz", (_, res) => res.status(200).send("ok"));
 app.get("/", (_, res) => res.status(200).send("Server is healthy ✅"));
+
+// ✅ ADD KEEP-ALIVE ROUTES HERE (for Koyeb free tier)
+app.get("/keep-alive", (req, res) => {
+  console.log('🔄 Keep-alive ping received');
+  res.status(200).json({ 
+    status: "alive", 
+    timestamp: new Date().toISOString(),
+    message: "Server is awake and running"
+  });
+});
+
+// Optional: Auto self-ping every 4 minutes to stay awake
+setInterval(() => {
+  console.log('🔄 Auto keep-alive ping');
+}, 4 * 60 * 1000);
 
 /* ---------- Start Server ---------- */
 (async () => {
