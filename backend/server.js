@@ -147,6 +147,13 @@ const PORT = process.env.PORT || 5000;
 
 const { DATABASE_URL = "", NODE_ENV = "development" } = process.env;
 
+// ✅ ADD THIS VALIDATION
+if (!DATABASE_URL || DATABASE_URL === "" || !DATABASE_URL.startsWith('postgresql://')) {
+  console.error("❌ FATAL: DATABASE_URL is missing or invalid!");
+  console.error("Current DATABASE_URL:", DATABASE_URL);
+  process.exit(1);
+}
+
 /* ---------- Database Connection ---------- */
 const needsSSL = NODE_ENV === "production";
 
