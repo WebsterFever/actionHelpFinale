@@ -308,8 +308,8 @@ async function initDatabase() {
 /* ---------- Middleware ---------- */
 const allowedOrigins = new Set([
   "https://action-help-finale-sixh-ql4c248wv-websterfevers-projects.vercel.app",
-  "https://actionhelp.org",
-  "https://www.actionhelp.org",
+  "https://actionhelps.org",
+  "https://www.actionhelps.org",
   "http://localhost:5173",
   "http://localhost:3000",
 ]);
