@@ -10,7 +10,7 @@ const AdminDonations = () => {
   useEffect(() => {
   const fetchDonations = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/donations", {
+      const res = await axios.get("https://supposed-nicolina-1websterfever-portfolio-01-9d79ceed.koyeb.app/api/admin/donations", {
         headers: {
           Authorization: "Bearer supersecrettoken123", // use your real token here
         },
