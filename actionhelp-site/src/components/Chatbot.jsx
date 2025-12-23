@@ -66,7 +66,15 @@ const Chatbot = () => {
             {unread > 0 && <span className={styles.badge}>{unread}</span>}
           </button>
 
-         
+          {/* TEXT stays */}
+          <span
+            className={styles.fabLabel}
+            onClick={openChat}
+            role="button"
+            tabIndex={0}
+          >
+            {t.chatbot?.toggleOpen || "Chat with us"}
+          </span>
         </div>
       )}
 
