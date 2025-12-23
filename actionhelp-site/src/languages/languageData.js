@@ -45,6 +45,18 @@ export const languageData = {
           {
             title: "Immigration Workshop",
             image: "/images/flyer.jpg",
+          },
+           {
+            title: "Immigration Workshop",
+            image: "/images/flyer.jpg",
+          },
+           {
+            title: "Immigration Workshop",
+            image: "/images/flyer.jpg",
+          },
+           {
+            title: "Immigration Workshop",
+            image: "/images/flyer.jpg",
           }
         ],
         past: [
