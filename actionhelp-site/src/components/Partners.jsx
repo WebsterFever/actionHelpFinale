@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./Partners.module.css";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Partners() {
+  const { languageData, language } = useLanguage();
+  const t = languageData[language].home.partners;
+
   const partners = [
     { src: "/images/american.png", alt: "American Partner" },
     { src: "/images/ash.png", alt: "ASH Partner" },
@@ -13,16 +17,22 @@ export default function Partners() {
     <section className={styles.partners} aria-labelledby="partners-title">
       <div className={styles.container}>
         <h2 id="partners-title" className={styles.title}>
-          Our Partners
+          {t.title}
         </h2>
+
         <p className={styles.subtitle}>
-          We’re proud to work with organizations that support our mission.
+          {t.subtitle}
         </p>
 
         <div className={styles.grid}>
           {partners.map((p) => (
             <div key={p.src} className={styles.card}>
-              <img className={styles.logo} src={p.src} alt={p.alt} loading="lazy" />
+              <img
+                src={p.src}
+                alt={p.alt}
+                className={styles.logo}
+                loading="lazy"
+              />
             </div>
           ))}
         </div>

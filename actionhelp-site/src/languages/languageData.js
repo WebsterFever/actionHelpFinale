@@ -30,6 +30,13 @@ export const languageData = {
       aboutTitle: "About Us",
       aboutDescription:
         "ACTIONHELP is a nonprofit organization dedicated to empowering Haitian and French-speaking African immigrants in Springfield, MA, and surrounding cities. As our community grows, we strive to provide essential support services that ensure a smooth transition and a better quality of life for newcomers.",
+
+      partners: {
+        title: "Our Partners",
+        subtitle: "We’re proud to work with organizations that support our mission."
+      },
+
+
       missionTitle: "Mission Statement",
       missionDescription:
         "Our mission is to empower Haitian and French-speaking African immigrant communities in Springfield, MA, and surrounding areas by providing essential resources, education, and support that foster integration, growth, and opportunity. Through collaboration, skills training, and access to housing and jobs, we strive to build inclusive communities where diversity is honored, and every individual has the chance to thrive and contribute.",
@@ -243,6 +250,8 @@ export const languageData = {
     bigTitle: { about: "ABOUT US", mission: "MISSION & VISION" },
     read: { readMore: "Read More" },
 
+
+
   },
 
   /* ===================== FRENCH ===================== */
@@ -277,6 +286,12 @@ export const languageData = {
       aboutTitle: "À propos de nous",
       aboutDescription:
         "ACTIONHELP est une association à but non lucratif dédiée à l’autonomisation des immigrants haïtiens et africains francophones à Springfield (MA) et dans les villes voisines. À mesure que notre communauté grandit, nous offrons des services essentiels pour faciliter la transition et améliorer la qualité de vie des nouveaux arrivants.",
+
+      partners: {
+        title: "Nos Partenaires",
+        subtitle: "Nous sommes fiers de collaborer avec des organisations qui soutiennent notre mission."
+      },
+
       missionTitle: "Déclaration de mission",
       missionDescription:
         "Notre mission est d’autonomiser les communautés immigrantes haïtiennes et africaines francophones à Springfield (MA) et aux alentours en fournissant des ressources, de l’éducation et un accompagnement favorisant l’intégration, la croissance et les opportunités. Par la collaboration, la formation et l’accès au logement et à l’emploi, nous construisons des communautés inclusives où la diversité est valorisée et chacun peut contribuer.",
@@ -483,7 +498,11 @@ export const languageData = {
     menuSections: { blog: "📌 Blog", services: "🛠 Services" },
     bigTitle: { about: "À PROPOS DE NOUS", mission: "MISSION & VISION" },
     read: { readMore: "En savoir plus" },
+
+
   },
+
+
 
   /* ===================== SPANISH ===================== */
   es: {
@@ -517,6 +536,12 @@ export const languageData = {
       aboutTitle: "Sobre Nosotros",
       aboutDescription:
         "ACTIONHELP es una organización sin fines de lucro dedicada a empoderar a inmigrantes haitianos y africanos de habla francesa en Springfield, MA, y ciudades cercanas. A medida que nuestra comunidad crece, brindamos servicios esenciales para facilitar la transición y mejorar la calidad de vida.",
+
+      partners: {
+        title: "Nuestros Socios",
+        subtitle: "Nos enorgullece colaborar con organizaciones que apoyan nuestra misión."
+      },
+
       missionTitle: "Declaración de Misión",
       missionDescription:
         "Nuestra misión es empoderar a las comunidades inmigrantes haitianas y africanas de habla francesa en Springfield, MA, y alrededores, proporcionando recursos, educación y apoyo que fomenten la integración, el crecimiento y la oportunidad. A través de la colaboración, la capacitación y el acceso a vivienda y empleo, construimos comunidades inclusivas donde la diversidad es valorada y todos pueden contribuir.",
@@ -756,6 +781,12 @@ export const languageData = {
       aboutTitle: "Sou Nou",
       aboutDescription:
         "ACTIONHELP se yon òganizasyon san bi likratif ki la pou bay pouvwa imigran ayisyen ak afriken ki pale franse yo nan Springfield (MA) ak zòn alantou yo. Nou bay sèvis esansyèl pou fasilite tranzisyon an epi amelyore kalite lavi nouvo arivan yo.",
+
+      partners: {
+        title: "Patnè Nou Yo",
+        subtitle: "Nou fyè pou n travay ak òganizasyon ki soutni misyon nou."
+      },
+
       missionTitle: "Deklarasyon Misyon",
       missionDescription:
         "Nou vize bay resous, edikasyon, ak sipò pou kominote imigran ayisyen ak afriken yo nan Springfield, MA ak vwazinaj la, pou ankouraje entegrasyon, kwasans ak opòtinite. Avèk kolaborasyon, fòmasyon, ak aksè a lojman ak travay, nou bati kominote enklizif kote divèsite gen valè epi chak moun kapab kontribye.",
