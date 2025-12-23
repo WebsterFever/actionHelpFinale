@@ -1,10 +1,12 @@
 import React from "react";
-import styles from "./Partners.module.css";
 import { useLanguage } from "../context/LanguageContext";
+import styles from "./Partners.module.css";
 
-export default function Partners() {
-  const { languageData, language } = useLanguage();
-  const t = languageData[language].home.partners;
+const Partners = () => {
+  const { t } = useLanguage();
+
+  // Safety guard (same idea as Newsletter)
+  if (!t?.home?.partners) return null;
 
   const partners = [
     { src: "/images/american.png", alt: "American Partner" },
@@ -17,11 +19,11 @@ export default function Partners() {
     <section className={styles.partners} aria-labelledby="partners-title">
       <div className={styles.container}>
         <h2 id="partners-title" className={styles.title}>
-          {t.title}
+          {t.home.partners.title}
         </h2>
 
         <p className={styles.subtitle}>
-          {t.subtitle}
+          {t.home.partners.subtitle}
         </p>
 
         <div className={styles.grid}>
@@ -39,4 +41,6 @@ export default function Partners() {
       </div>
     </section>
   );
-}
+};
+
+export default Partners;
