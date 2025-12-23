@@ -1,9 +1,9 @@
-/* =======================
-   Events Gallery
-======================= */
+/* =========================
+   EVENTS – MOBILE FIRST
+========================= */
 
 .events {
-  padding: 56px 16px;
+  padding: 40px 12px; /* 📱 smaller padding by default */
   background: #ffffff;
 }
 
@@ -12,106 +12,158 @@
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
 /* Titles */
 .title {
   text-align: center;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  margin-bottom: 8px;
+  font-size: 1.5rem; /* 📱 smaller title */
   color: #111827;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 28px;
 }
 
 :global(.dark) .title {
   color: #f5f7fa;
 }
 
-.subtitle {
-  text-align: center;
-  margin-bottom: 32px;
-  color: #6b7280;
-  font-size: 1rem;
-}
-
 :global(.dark) .subtitle {
   color: #9ca3af;
 }
 
-/* Section headers (Upcoming / Past) */
 .sectionTitle {
-  margin: 32px 0 16px;
-  font-size: 1.25rem;
+  margin: 24px 0 12px;
+  font-size: 1.1rem;
   color: #1f2937;
+  text-align: center;
 }
 
 :global(.dark) .sectionTitle {
   color: #e5e7eb;
 }
 
-/* Grid */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
+/* =========================
+   SLIDER (MOBILE DEFAULT)
+========================= */
 
-/* Card */
-.card {
-  background: #f9fafb;
-  border-radius: 16px;
-  padding: 16px;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-}
-
-:global(.dark) .card {
-  background: #111827;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
-}
-
-/* Flyer image */
-.card img {
+.slider {
+  overflow: hidden;
   width: 100%;
-  max-height: 420px;
+}
+
+.track {
+  display: flex;
+  transition: transform 0.35s ease;
+}
+
+.slide {
+  min-width: 100%;
+  padding: 0 6px; /* 📱 tighter spacing */
+  text-align: center;
+}
+
+.slide img {
+  width: 100%;
+  max-height: 360px; /* 📱 mobile height */
   object-fit: contain;
   border-radius: 12px;
-  margin-bottom: 12px;
   background: #ffffff;
 }
 
-:global(.dark) .card img {
+:global(.dark) .slide img {
   background: #0b0f14;
 }
 
-/* Event title */
-.card p {
+.slide p {
+  margin-top: 10px;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #1f2937;
-  margin: 0;
 }
 
-:global(.dark) .card p {
+:global(.dark) .slide p {
   color: #f3f4f6;
 }
 
-/* Tablet */
+/* =========================
+   DOTS (MOBILE)
+========================= */
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 14px 0 28px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: #d1d5db;
+  cursor: pointer;
+}
+
+.active {
+  background: #22c55e;
+}
+
+:global(.dark) .dot {
+  background: #374151;
+}
+
+:global(.dark) .active {
+  background: #22c55e;
+}
+
+/* =========================
+   TABLET ≥ 640px
+========================= */
+
 @media (min-width: 640px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  .events {
+    padding: 56px 16px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .slide img {
+    max-height: 440px;
+  }
+
+  .dots {
+    gap: 8px;
   }
 }
 
-/* Desktop */
+/* =========================
+   DESKTOP ≥ 1024px
+========================= */
+
 @media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+  .container {
+    max-width: 1200px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .slide {
+    padding: 0 12px;
+  }
+
+  .slide img {
+    max-height: 520px;
   }
 }
