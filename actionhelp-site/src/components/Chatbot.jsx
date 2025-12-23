@@ -19,8 +19,9 @@ const Chatbot = () => {
 
   const openChat = () => {
     setOpen(true);
-    setUnread(0); // user has seen messages
+    setUnread(0);
   };
+
   const closeChat = () => setOpen(false);
 
   const handleSend = () => {
@@ -42,51 +43,35 @@ const Chatbot = () => {
     }
 
     setMessages((prev) => [...prev, { text }, { text: botText, sender: "bot" }]);
-    if (!open) setUnread((u) => u + 1);
     setInput("");
   };
 
-  // pre-resolve labels once for readability
-  const openLabelLong = t.chatbot?.toggleOpen || "Chat with us";
-  const openLabelShort = t.chatbot?.toggleOpenShort || openLabelLong || "Chat with us";
+  const openLabel = t.chatbot?.toggleOpen || "Chat with us";
   const closeLabel = t.chatbot?.toggleClose || "Close chat";
 
   return (
-    <div className={`${styles.chatbotContainer} ${open ? styles.open : ""}`}>
-      {/* Floating toggle (hidden when open) */}
+    <div className={styles.chatbotContainer}>
+      {/* Floating chat button (ONLY ONE) */}
       {!open && (
-        <div className={styles.fabWrap}>
-          <button
-            type="button"
-            className={styles.toggleButton}
-            onClick={openChat}
-            aria-label={
-              unread > 0
-                ? `${unread} ${t.chatbot?.newMessage || "new messages"}. ${openLabelLong}`
-                : openLabelLong
-            }
-            title={openLabelLong}
-          >
-            💬
-            {unread > 0 && <span className={styles.badge}>{unread}</span>}
-          </button>
-
-          {/* Desktop & Mobile label (clean text) */}
-          <span
-            className={styles.fabLabel}
-            role="button"
-            tabIndex={0}
-            onClick={openChat}
-            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && openChat()}
-          >
-            {openLabelShort}
-          </span>
-        </div>
+        <button
+          type="button"
+          className={styles.toggleButton}
+          onClick={openChat}
+          aria-label={openLabel}
+          title={openLabel}
+        >
+          💬
+          {unread > 0 && <span className={styles.badge}>{unread}</span>}
+        </button>
       )}
 
       {/* Chat window */}
       {open && (
-        <div className={styles.chatWindow} role="dialog" aria-label={t.chatbot?.title || ""}>
+        <div
+          className={styles.chatWindow}
+          role="dialog"
+          aria-label={t.chatbot?.title || "Chatbot"}
+        >
           <button
             type="button"
             className={styles.closeTop}
@@ -99,7 +84,10 @@ const Chatbot = () => {
 
           <div className={styles.messages}>
             {messages.map((msg, i) => (
-              <div key={i} className={msg.sender === "bot" ? styles.bot : styles.user}>
+              <div
+                key={i}
+                className={msg.sender === "bot" ? styles.bot : styles.user}
+              >
                 {msg.text}
               </div>
             ))}
@@ -113,7 +101,11 @@ const Chatbot = () => {
               placeholder={t.chatbot?.placeholder || "Type here..."}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
             />
-            <button type="button" onClick={handleSend} className={styles.sendButton}>
+            <button
+              type="button"
+              onClick={handleSend}
+              className={styles.sendButton}
+            >
               {t.chatbot?.send || "Send"}
             </button>
           </div>
