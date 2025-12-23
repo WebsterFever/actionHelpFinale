@@ -36,7 +36,24 @@ export const languageData = {
         subtitle: "We’re proud to work with organizations that support our mission."
       },
 
-
+      events: {
+        title: "Our Events",
+        subtitle: "Moments from our community initiatives",
+        upcomingLabel: "Upcoming Events",
+        pastLabel: "Past Events",
+        upcoming: [
+          {
+            title: "Immigration Workshop",
+            image: "/images/flyer.jpg",
+          }
+        ],
+        past: [
+          {
+            title: "Community Health Fair",
+           image: "/images/flyer.jpg",
+          }
+        ]
+      },
       missionTitle: "Mission Statement",
       missionDescription:
         "Our mission is to empower Haitian and French-speaking African immigrant communities in Springfield, MA, and surrounding areas by providing essential resources, education, and support that foster integration, growth, and opportunity. Through collaboration, skills training, and access to housing and jobs, we strive to build inclusive communities where diversity is honored, and every individual has the chance to thrive and contribute.",
@@ -292,6 +309,25 @@ export const languageData = {
         subtitle: "Nous sommes fiers de collaborer avec des organisations qui soutiennent notre mission."
       },
 
+      events: {
+        title: "Nos Événements",
+        subtitle: "Moments forts de nos initiatives communautaires",
+        upcomingLabel: "Événements à venir",
+        pastLabel: "Événements passés",
+        upcoming: [
+          {
+            title: "Atelier sur l’immigration",
+            image: "/images/flyer.jpg",
+          }
+        ],
+        past: [
+          {
+            title: "Foire communautaire de la santé",
+            image: "/images/flyer.jpg",
+          }
+        ]
+      },
+
       missionTitle: "Déclaration de mission",
       missionDescription:
         "Notre mission est d’autonomiser les communautés immigrantes haïtiennes et africaines francophones à Springfield (MA) et aux alentours en fournissant des ressources, de l’éducation et un accompagnement favorisant l’intégration, la croissance et les opportunités. Par la collaboration, la formation et l’accès au logement et à l’emploi, nous construisons des communautés inclusives où la diversité est valorisée et chacun peut contribuer.",
@@ -542,6 +578,26 @@ export const languageData = {
         subtitle: "Nos enorgullece colaborar con organizaciones que apoyan nuestra misión."
       },
 
+      events: {
+        title: "Nuestros Eventos",
+        subtitle: "Momentos de nuestras iniciativas comunitarias",
+        upcomingLabel: "Próximos eventos",
+        pastLabel: "Eventos pasados",
+        upcoming: [
+          {
+            title: "Taller de inmigración",
+            image: "/images/flyer.jpg",
+          }
+        ],
+        past: [
+          {
+            title: "Feria comunitaria de salud",
+            image: "/images/flyer.jpg",
+          },
+        ]
+      },
+
+
       missionTitle: "Declaración de Misión",
       missionDescription:
         "Nuestra misión es empoderar a las comunidades inmigrantes haitianas y africanas de habla francesa en Springfield, MA, y alrededores, proporcionando recursos, educación y apoyo que fomenten la integración, el crecimiento y la oportunidad. A través de la colaboración, la capacitación y el acceso a vivienda y empleo, construimos comunidades inclusivas donde la diversidad es valorada y todos pueden contribuir.",
@@ -785,6 +841,26 @@ export const languageData = {
       partners: {
         title: "Patnè Nou Yo",
         subtitle: "Nou fyè pou n travay ak òganizasyon ki soutni misyon nou."
+      },
+
+      events: {
+        title: "Evènman Nou Yo",
+        subtitle: "Momant enpòtan nan aksyon kominotè nou yo",
+        upcomingLabel: "Evènman k ap vini",
+        pastLabel: "Evènman pase yo",
+        upcoming: [
+          {
+            title: "Atelye sou imigrasyon",
+           image: "/images/flyer.jpg",
+          }
+        ],
+        past: [
+          {
+            title: "Fwa sante kominotè",
+           image: "/images/flyer.jpg",
+          }
+          
+        ]
       },
 
       missionTitle: "Deklarasyon Misyon",

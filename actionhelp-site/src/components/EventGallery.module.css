@@ -1,0 +1,117 @@
+/* =======================
+   Events Gallery
+======================= */
+
+.events {
+  padding: 56px 16px;
+  background: #ffffff;
+}
+
+:global(.dark) .events {
+  background: #0b0f14;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Titles */
+.title {
+  text-align: center;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+:global(.dark) .title {
+  color: #f5f7fa;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+:global(.dark) .subtitle {
+  color: #9ca3af;
+}
+
+/* Section headers (Upcoming / Past) */
+.sectionTitle {
+  margin: 32px 0 16px;
+  font-size: 1.25rem;
+  color: #1f2937;
+}
+
+:global(.dark) .sectionTitle {
+  color: #e5e7eb;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* Card */
+.card {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+:global(.dark) .card {
+  background: #111827;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+/* Flyer image */
+.card img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: #ffffff;
+}
+
+:global(.dark) .card img {
+  background: #0b0f14;
+}
+
+/* Event title */
+.card p {
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+:global(.dark) .card p {
+  color: #f3f4f6;
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

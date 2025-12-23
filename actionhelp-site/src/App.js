@@ -16,6 +16,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import Success from "./pages/Success";
 import AdminDonations from "./pages/AdminDonations";
 import Partners from "./components/Partners";
+import EventGallery from "./components/EventGallery";
+
 
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
@@ -51,6 +53,7 @@ function App() {
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <EventGallery />
           <Chatbot />
            <Partners />
           <Footer />
