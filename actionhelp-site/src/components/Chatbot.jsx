@@ -5,7 +5,6 @@ import { useLanguage } from "../context/LanguageContext";
 const Chatbot = () => {
   const { t } = useLanguage();
 
-  // closed by default; welcome message present → 1 unread
   const [open, setOpen] = useState(false);
   const [unread, setUnread] = useState(1);
 
@@ -15,6 +14,7 @@ const Chatbot = () => {
       sender: "bot",
     },
   ]);
+
   const [input, setInput] = useState("");
 
   const openChat = () => {
@@ -32,9 +32,9 @@ const Chatbot = () => {
     const responses = t.chatbot?.responses || {};
 
     let botText = responses.default || "How can I help you?";
-    if (/\b(hello|hi|hey|bonjour|good (morning|night))\b/.test(userText)) {
+    if (/\b(hello|hi|hey|bonjour)\b/.test(userText)) {
       botText = responses.greetings || botText;
-    } else if (userText.includes("help") || userText.includes("aide")) {
+    } else if (userText.includes("help")) {
       botText = responses.help || botText;
     } else if (userText.includes("immigration")) {
       botText = responses.immigration || botText;
@@ -42,42 +42,49 @@ const Chatbot = () => {
       botText = responses.bye || botText;
     }
 
-    setMessages((prev) => [...prev, { text }, { text: botText, sender: "bot" }]);
+    setMessages((prev) => [
+      ...prev,
+      { text, sender: "user" },
+      { text: botText, sender: "bot" },
+    ]);
+
     setInput("");
   };
 
-  const openLabel = t.chatbot?.toggleOpen || "Chat with us";
-  const closeLabel = t.chatbot?.toggleClose || "Close chat";
-
   return (
     <div className={styles.chatbotContainer}>
-      {/* Floating chat button (ONLY ONE) */}
+      {/* Floating trigger */}
       {!open && (
-        <button
-          type="button"
-          className={styles.toggleButton}
-          onClick={openChat}
-          aria-label={openLabel}
-          title={openLabel}
-        >
-          💬
-          {unread > 0 && <span className={styles.badge}>{unread}</span>}
-        </button>
+        <div className={styles.fabWrap}>
+          <button
+            type="button"
+            className={styles.toggleButton}
+            onClick={openChat}
+            aria-label={t.chatbot?.toggleOpen || "Chat with us"}
+          >
+            💬
+            {unread > 0 && <span className={styles.badge}>{unread}</span>}
+          </button>
+
+          {/* TEXT stays */}
+          <span
+            className={styles.fabLabel}
+            onClick={openChat}
+            role="button"
+            tabIndex={0}
+          >
+            {t.chatbot?.toggleOpen || "Chat with us"}
+          </span>
+        </div>
       )}
 
       {/* Chat window */}
       {open && (
-        <div
-          className={styles.chatWindow}
-          role="dialog"
-          aria-label={t.chatbot?.title || "Chatbot"}
-        >
+        <div className={styles.chatWindow}>
           <button
-            type="button"
             className={styles.closeTop}
             onClick={closeChat}
-            aria-label={closeLabel}
-            title={closeLabel}
+            aria-label={t.chatbot?.toggleClose || "Close chat"}
           >
             ×
           </button>
@@ -103,8 +110,8 @@ const Chatbot = () => {
             />
             <button
               type="button"
-              onClick={handleSend}
               className={styles.sendButton}
+              onClick={handleSend}
             >
               {t.chatbot?.send || "Send"}
             </button>
