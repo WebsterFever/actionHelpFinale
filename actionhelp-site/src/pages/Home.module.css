@@ -4182,15 +4182,21 @@
 /* Tablet: 2 columns */
 @media (min-width: 700px){
   .leaderCarousel{
-    grid-template-columns: repeat(2, minmax(200px, 1fr)) !important;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    max-width: 700px;
+    margin-inline: auto;
+    justify-content: center;
   }
 }
 
-/* Desktop: 4 columns in a single line */
+/* Desktop: up to 4 columns, centered so a partial row (e.g. 3 leaders) isn't left-aligned */
 @media (min-width: 1024px){
   .leaderCarousel{
-    grid-template-columns: repeat(4, minmax(200px, 1fr)) !important;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
     gap: clamp(10px, 1.6vw, 18px);
+    max-width: 1100px;
+    margin-inline: auto;
+    justify-content: center;
   }
   /* Let cards expand to fill the grid cells */
   .leaderCarousel .leadershipItem{
