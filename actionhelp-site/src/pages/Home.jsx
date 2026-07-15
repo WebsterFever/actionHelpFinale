@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { useSearch } from "../context/SearchContext";
 import styles from "./Home.module.css";
@@ -7,6 +7,13 @@ import TestimonialSection from "../components/TestimonialSection";
 import Newsletter from "../components/Newsletter";
 import FAQ from "../components/FAQ";
 import { useNavigate, useLocation } from "react-router-dom";
+
+const HERO_IMAGES = [
+  "/images/mu.jpg",
+  "/images/job.jpg",
+  "/images/lang.jpg",
+  "/images/education.jpg",
+];
 
 export default function Home() {
   const { t } = useLanguage();
@@ -17,15 +24,7 @@ export default function Home() {
   // ⬅️ listen to #hash
   // 👇 add these with your other hooks/state near the top of Home()
   const leaderListRef = useRef(null);
-  const [leaderIdx, setLeaderIdx] = useState(0);
-
-
-  const heroImages = [
-    "/images/mu.jpg",
-    "/images/job.jpg",
-    "/images/lang.jpg",
-    "/images/education.jpg",
-  ];
+  const [leaderIdx] = useState(0);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
@@ -42,7 +41,7 @@ export default function Home() {
 
   const enterManualMode = () => { if (!manualScroll) setManualScroll(true); };
 
-  const recalcThumb = () => {
+  const recalcThumb = useCallback(() => {
     const wr = wrapperRef.current;
     const tr = trackRef.current;
     if (!wr || !tr) return;
@@ -59,7 +58,7 @@ export default function Home() {
 
     setThumbW(w);
     setThumbX(Number.isFinite(x) ? x : 0);
-  };
+  }, [manualScroll]);
 
   useEffect(() => {
     const wr = wrapperRef.current;
@@ -73,7 +72,7 @@ export default function Home() {
       wr.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
     };
-  }, [manualScroll]);
+  }, [manualScroll, recalcThumb]);
 
 
   const onTrackDown = (e) => {
@@ -127,7 +126,7 @@ export default function Home() {
   // hero rotator
   useEffect(() => {
     const id = setInterval(
-      () => setCurrentImageIndex((p) => (p + 1) % heroImages.length),
+      () => setCurrentImageIndex((p) => (p + 1) % HERO_IMAGES.length),
       4000
     );
     return () => clearInterval(id);
@@ -219,7 +218,7 @@ export default function Home() {
         <section className={styles.hero}>
           <div className={styles.heroMainContent}>
             <img
-              src={heroImages[currentImageIndex]}
+              src={HERO_IMAGES[currentImageIndex]}
               alt="Supportive"
               className={styles.heroImage}
             />
