@@ -156,13 +156,13 @@ export const languageData = {
             bio:
               "A former lawyer and sociologist from Haiti, currently pursuing a Doctorate in Business Administration (DBA). He brings 5+ years of experience with the United Nations, supporting communities at multiple levels. His expertise includes risk & disaster management, business and nonprofit administration, and information technology."
           },
-          {
+          /* {
             name: "Marie Ange Laroche",
             role: "Vice President",
             image: "/images/laroche.jpg",
             bio:
               "Experienced paralegal committed to justice and community empowerment. Fluent in English, French, and Haitian Creole, she supports the Haitian community with culturally sensitive legal assistance."
-          },
+          }, */
           {
             name: "Mivida Domercant",
             role: "Secretary",
@@ -426,13 +426,13 @@ export const languageData = {
             bio:
               "Ancien avocat et sociologue d’Haïti, actuellement en doctorat (DBA). Plus de 5 ans d’expérience avec l’ONU. Domaines : gestion des risques et catastrophes, administration (entreprise & association) et technologies de l’information."
           },
-          {
+          /* {
             name: "Marie Ange Laroche",
             role: "Vice-présidente",
             image: "/images/laroche.jpg",
             bio:
               "Parajuriste expérimentée engagée pour la justice et l’autonomisation. Trilingue (anglais, français, créole haïtien), elle soutient la communauté haïtienne avec un accompagnement culturellement adapté."
-          },
+          }, */
           {
             name: "Mivida Domercant",
             role: "Secrétaire",
@@ -696,13 +696,13 @@ export const languageData = {
             bio:
               "Exabogado y sociólogo de Haití, cursando un DBA. Más de 5 años de experiencia con la ONU. Áreas: gestión de riesgos y desastres, administración de ONG y tecnología."
           },
-          {
+          /* {
             name: "Marie Ange Laroche",
             role: "Vicepresidenta",
             image: "/images/laroche.jpg",
             bio:
               "Paralegal con amplia experiencia y compromiso con la comunidad. Trilingüe (inglés, francés y criollo haitiano), brinda apoyo legal culturalmente sensible."
-          },
+          }, */
           {
             name: "Mivida Domercant",
             role: "Secretaria",
@@ -961,13 +961,13 @@ export const languageData = {
             bio:
               "Ansien avoka ak sosyològ Ayiti, ap pouswiv yon DBA. Plis pase 5 ane eksperyans ak Nasyonzini. Zòn ekspètiz: jesyon risk ak dezas, administrasyon ONG ak teknoloji enfòmasyon."
           },
-          {
+          /* {
             name: "Marie Ange Laroche",
             role: "Vis Prezidan",
             image: "/images/laroche.jpg",
             bio:
               "Paralegal ki gen eksperyans, angaje pou jistis ak otorizasyon kominote a. Pale anglè, franse, ak kreyòl ayisyen."
-          },
+          }, */
           {
             name: "Mivida Domercant",
             role: "Sekretè",
