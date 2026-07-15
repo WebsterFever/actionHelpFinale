@@ -962,7 +962,7 @@ export const languageData = {
               "Ansien avoka ak sosyològ Ayiti, ap pouswiv yon DBA. Plis pase 5 ane eksperyans ak Nasyonzini. Zòn ekspètiz: jesyon risk ak dezas, administrasyon ONG ak teknoloji enfòmasyon."
           },
           /* {
-            name: "  Marie Ange Laroche",
+            name: "Marie Ange Laroche",
             role: "Vis Prezidan",
             image: "/images/laroche.jpg",
             bio:
