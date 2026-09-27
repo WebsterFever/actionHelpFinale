@@ -49,7 +49,7 @@
   position: static;
   grid-column: 2;
   min-width: 0;
-  gap: clamp(4px,.65vw,10px);
+  gap: clamp(14px,1.2vw,24px);
 }
 .header .nav a {
   display: inline-flex;
@@ -94,7 +94,7 @@
   .header { gap: 10px; padding-inline: 20px; }
   .topLogoImage { width: 240px; }
   .searchDesktopOnly { display: none !important; }
-  .header .nav { gap: 0; }
+  .header .nav { gap: clamp(4px,.6vw,8px); }
 }
 @media (max-width: 1023px) {
   .topLogoBar, .rightControls { display: none !important; }
@@ -114,6 +114,7 @@
   .header .navMobileOpen {
     display: flex !important;
     flex-direction: column;
+    gap: 8px;
     position: absolute;
     top: 100%; left: 0; right: 0;
     padding: 14px clamp(16px,5vw,40px) 20px;
