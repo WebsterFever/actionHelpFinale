@@ -43,10 +43,13 @@ const Header = ({ theme = "light", setTheme }) => {
         </div>
       )}
 
-      <header className={`${styles.header} ${scrolled ? styles.isScrolled : ""}`}>
+      <div className={styles.topLogoBar}>
         <Link to="/" onClick={handleMenuItemClick} className={styles.logoLink} aria-label="ActionHelp home">
           <img src="/images/logo.png" alt="ActionHelp Foundation" className={styles.topLogoImage} />
         </Link>
+      </div>
+
+      <header className={`${styles.header} ${scrolled ? styles.isScrolled : ""}`}>
         {/* Mobile inline logo (hidden on desktop) */}
         <Link to="/" className={styles.mobileLogoWrap} onClick={handleMenuItemClick}>
           <img src="/images/logo.png" alt="ActionHelp Logo" className={styles.mobileLogoImage} />
