@@ -9,7 +9,7 @@
 .iconButton, .menuToggle { display: grid; place-items: center; min-width: 40px; min-height: 40px; border: 1px solid #ccd6e2; border-radius: 9px; background: transparent; color: var(--text); cursor: pointer; }
 .menuToggle { font-size: 1.4rem; }
 .nav a { transition: background .2s ease, color .2s ease; }
-/* Unified desktop bar. The former separate logo strip is no longer rendered. */
+/* Desktop brand strip and compact menu row. */
 :root {
   --header-h: 88px;
   --hdr-surface: rgba(255,255,255,.97);
@@ -24,10 +24,11 @@
 .header {
   box-sizing: border-box;
   width: 100% !important;
-  min-height: 88px;
-  height: auto;
-  padding: 10px clamp(20px,3vw,56px);
-  display: flex;
+  min-height: 72px;
+  height: 72px;
+  padding: 8px clamp(20px,3vw,56px);
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
   align-items: center;
   gap: clamp(12px,2vw,32px);
   background: var(--hdr-surface);
@@ -38,16 +39,17 @@
   color: var(--hdr-ink);
 }
 .header.isScrolled { box-shadow: 0 8px 24px rgba(15,35,60,.08); }
-.logoLink { display: flex; align-items: center; flex: 0 0 auto; }
-.topLogoImage { width: 154px; height: 66px; object-fit: contain; display: block; }
+.topLogoBar { height: 150px; display: flex; align-items: center; justify-content: center; background: var(--background); }
+.logoLink { display: flex; align-items: center; }
+.topLogoImage { width: 260px; height: 138px; object-fit: contain; display: block; }
 .header .nav {
   display: flex;
   align-items: center;
   justify-content: center;
   position: static;
-  flex: 1 1 auto;
+  grid-column: 2;
   min-width: 0;
-  gap: clamp(2px,.75vw,12px);
+  gap: clamp(4px,.65vw,10px);
 }
 .header .nav a {
   display: inline-flex;
@@ -74,7 +76,7 @@
   animation: none;
 }
 .header .nav .donateLinkReset:hover { background: #9c1736; }
-.rightControls { position: static; flex: 0 0 auto; gap: 10px; }
+.rightControls { display: flex; align-items: center; justify-self: end; grid-column: 3; flex-direction: row; flex-wrap: nowrap; position: static; gap: 10px; white-space: nowrap; }
 .rightControls .languageSelect, .themeToggle {
   height: 38px;
   border: 1px solid var(--hdr-line);
@@ -89,17 +91,18 @@
   .mobileLogoWrap, .mobileRightGroup, .donateBanner { display: none !important; }
 }
 @media (min-width: 1024px) and (max-width: 1380px) {
-  .header { gap: 12px; padding-inline: 20px; }
-  .topLogoImage { width: 124px; }
+  .header { gap: 10px; padding-inline: 20px; }
+  .topLogoImage { width: 240px; }
   .searchDesktopOnly { display: none !important; }
   .header .nav { gap: 0; }
 }
 @media (max-width: 1023px) {
-  .logoLink, .rightControls { display: none !important; }
+  .topLogoBar, .rightControls { display: none !important; }
   .donateBanner { display: flex; box-sizing: border-box; }
   .header {
     position: fixed !important;
     top: 48px !important;
+    display: flex;
     height: 92px;
     min-height: 92px;
     padding: 8px 20px;
