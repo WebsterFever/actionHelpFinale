@@ -1,24 +1,13 @@
 /* Fixed to corner, above everything */
 .chatbotContainer {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   z-index: 2147483647;
 }
 
 /* Small round toggle (visible only when closed) */
-.toggleButton {
-  position: relative;          /* for badge positioning */
-  width: 56px;
-  height: 56px;
-  border: none;
-  border-radius: 999px;
-  background: #0ea5e9;         /* sky-500 */
-  color: #fff;
-  font-size: 22px;
+.toggleButton {          /* for badge positioning */
+  border-radius: 999px;         /* sky-500 */
   line-height: 56px;
   text-align: center;
-  cursor: pointer;
   box-shadow: 0 10px 24px rgba(14, 165, 233, .35);
   transition: transform .2s ease, filter .2s ease;
 }
@@ -26,20 +15,9 @@
 
 /* Unread badge (red) with soft pulse */
 .badge {
-  position: absolute;
   top: -4px;
-  right: -4px;
-  min-width: 22px;
-  height: 22px;
-  padding: 0 6px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  background: #ef4444;         /* red-500 */
-  color: #fff;
+  right: -4px;         /* red-500 */
   font-weight: 800;
-  font-size: 12px;
-  border: 2px solid #fff;
   box-shadow: 0 0 0 2px rgba(239, 68, 68, .15);
 }
 .badge::after {
@@ -68,10 +46,6 @@
   background: #ffffff;
   color: #111;
   border: 1px solid #d0d7de;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
   box-shadow: 0 18px 42px rgba(0,0,0,.25);
   margin-top: 8px;
 }
@@ -79,9 +53,7 @@
 
 /* Close button in the top-right */
 .closeTop {
-  position: absolute;
   top: 8px;
-  right: 8px;
   width: 32px;
   height: 32px;
   border: 0;
@@ -91,7 +63,6 @@
   font-size: 20px;
   line-height: 32px;
   text-align: center;
-  cursor: pointer;
   z-index: 3;
   transition: background .2s ease, transform .2s ease;
 }
@@ -112,7 +83,6 @@
 .messages {
   flex: 1;
   padding: 10px;
-  overflow-y: auto;
   background: #fff;
 }
 
@@ -127,7 +97,6 @@
 }
 .user {
   background: #0ea5e9;
-  color: #fff;
   margin-bottom: 10px;
   padding: 8px 10px;
   border-radius: 8px;
@@ -136,56 +105,35 @@
 
 /* Input row */
 .inputArea {
-  display: flex;
   gap: 10px;
-  padding: 10px;
   border-top: 1px solid #e6e8eb;
   background: #fdfdfd;
 }
 .inputArea input {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid #d0d7de;
-  font-size: 14px;
 }
 .sendButton {
   flex: 0 0 auto;
   padding: 10px 14px;
   border-radius: 8px;
-  border: none;
   background: #2563eb;
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
   transition: filter .2s ease, transform .2s ease;
 }
 .sendButton:hover { filter: brightness(.96); transform: translateY(-1px); }
 /* Positioning container for the FAB and label */
 .fabWrap{
-  display: flex;
-  align-items: center;
-  gap: 10px;
   position: absolute;      /* same corner as your toggle button */
   right: 20px;
   bottom: 20px;
-  z-index: 50;
 }
 
 /* The “Chat with us” pill */
 .fabLabel{
-  user-select: none;
-  cursor: pointer;
   padding: 8px 12px;
-  border-radius: 999px;
-  font-weight: 700;
   font-size: 0.95rem;
-  background: var(--primary, #0ea5e9);
-  color: #fff;
-  box-shadow: 0 8px 22px rgba(0,0,0,.18);
-  white-space: nowrap;
-  animation: fabPulse 1.4s ease-in-out infinite;
 }
 
 /* gentle pulse animation */
@@ -195,46 +143,26 @@
 }
 
 /* Hide the label on very small screens */
-@media (max-width: 420px){
-  .fabLabel{ display: none; }
-}
 /* ===== Floating button + label (desktop) ===== */
 .fabWrap{
   position: fixed;
   right: 22px;
   bottom: 22px;
   z-index: 50;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 /* Your existing circular button should already exist; ensure badge sits properly */
 .toggleButton{
-  position: relative;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: none;
   background: #12a3eb;
-  color: #fff;
   font-size: 24px;
   box-shadow: 0 10px 24px rgba(0,0,0,.18);
-  cursor: pointer;
 }
 .toggleButton:hover{ filter: brightness(1.05); }
 .badge{
-  position: absolute;
-  top: -6px;
-  right: -6px;
   min-width: 22px;
   height: 22px;
   padding: 0 6px;
-  border-radius: 999px;
   background: #ff4d5a;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
   display: grid;
   place-items: center;
   box-shadow: 0 0 0 3px #fff, 0 6px 16px rgba(255, 77, 90, 0.5);
@@ -243,15 +171,11 @@
 /* Label pill (desktop) */
 .fabLabel{
   user-select: none;
-  cursor: pointer;
   padding: 10px 14px;
-  border-radius: 999px;
   font-weight: 800;
   font-size: 0.98rem;
   background: var(--primary, #0ea5e9);
-  color: #fff;
   box-shadow: 0 8px 22px rgba(0,0,0,.18);
-  white-space: nowrap;
   animation: fabPulse 1.4s ease-in-out infinite;
   transform-origin: right center;
 }
