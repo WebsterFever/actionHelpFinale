@@ -39,7 +39,7 @@
 }
 .header.isScrolled { box-shadow: 0 8px 24px rgba(15,35,60,.08); }
 .logoLink { display: flex; align-items: center; flex: 0 0 auto; }
-.topLogoImage { width: 154px; height: 66px; object-fit: contain; display: block; }
+.topLogoImage { width: 176px; height: 70px; object-fit: contain; display: block; }
 .header .nav {
   display: flex;
   align-items: center;
@@ -74,7 +74,7 @@
   animation: none;
 }
 .header .nav .donateLinkReset:hover { background: #9c1736; }
-.rightControls { position: static; flex: 0 0 auto; gap: 10px; }
+.rightControls { display: flex; align-items: center; flex-direction: row; flex-wrap: nowrap; position: static; flex: 0 0 auto; gap: 10px; white-space: nowrap; }
 .rightControls .languageSelect, .themeToggle {
   height: 38px;
   border: 1px solid var(--hdr-line);
@@ -90,7 +90,7 @@
 }
 @media (min-width: 1024px) and (max-width: 1380px) {
   .header { gap: 12px; padding-inline: 20px; }
-  .topLogoImage { width: 124px; }
+  .topLogoImage { width: 142px; }
   .searchDesktopOnly { display: none !important; }
   .header .nav { gap: 0; }
 }
