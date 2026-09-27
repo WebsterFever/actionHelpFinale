@@ -4,10 +4,6 @@
   overflow: hidden;
 }
 
-:global(.dark) .events {
-  background: #0b0f14;
-}
-
 .title {
   text-align: center;
   font-size: 1.5rem;
@@ -62,10 +58,6 @@
 }
 
 /* Center slide */
-.active {
-  opacity: 1;
-  transform: scale(1);
-}
 
 /* ======================
    TABLET & DESKTOP
