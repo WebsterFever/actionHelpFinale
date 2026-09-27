@@ -138,6 +138,19 @@ const Donate = () => {
         comment: form.comment,
       });
 
+      if (response.data.success && isMonthly) {
+        if (!response.data.clientSecret) {
+          throw new Error("The subscription could not be confirmed.");
+        }
+        const { error: confirmationError, paymentIntent } = await stripe.confirmCardPayment(
+          response.data.clientSecret,
+          { payment_method: paymentMethod.id }
+        );
+        if (confirmationError || paymentIntent?.status !== "succeeded") {
+          throw new Error(confirmationError?.message || "The monthly payment is not complete.");
+        }
+      }
+
       if (response.data.success) {
         setStep(1);
         setForm({ ...form, custom: "", comment: "" });
@@ -145,7 +158,7 @@ const Donate = () => {
       }
     } catch (err) {
       console.error("❌ Donation error:", err);
-      alert("Payment failed. Please try again.");
+      alert(err.message || "Payment failed. Please try again.");
     }
   };
 

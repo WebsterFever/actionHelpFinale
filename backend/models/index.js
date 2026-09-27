@@ -1,22 +1,19 @@
 const { Sequelize, DataTypes } = require("sequelize");
 require("dotenv").config();
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT, // 👈 porta correta vinda do .env
-    dialect: "postgres",
-    logging: false,
-  }
-);
+const { DATABASE_URL, NODE_ENV } = process.env;
+if (!DATABASE_URL || !/^postgres(?:ql)?:\/\//.test(DATABASE_URL)) {
+  throw new Error("DATABASE_URL must be a PostgreSQL connection URL");
+}
 
-// ✅ Passe o DataTypes aqui corretamente
+const sequelize = new Sequelize(DATABASE_URL, {
+  dialect: "postgres",
+  logging: false,
+  dialectOptions: NODE_ENV === "production"
+    ? { ssl: { require: true, rejectUnauthorized: false }, keepAlive: true }
+    : {},
+  pool: { max: 5, min: 0, idle: 10000, acquire: 30000 },
+});
+
 const Donation = require("./donation")(sequelize, DataTypes);
-
-module.exports = {
-  sequelize,
-  Donation,
-};
+module.exports = { sequelize, Donation };

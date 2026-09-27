@@ -7,7 +7,7 @@ const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
 exports.getDonations = async (req, res) => {
   const token = req.headers.authorization;
 
-  if (!token || token !== `Bearer ${ADMIN_TOKEN}`) {
+  if (!ADMIN_TOKEN || !token || token !== `Bearer ${ADMIN_TOKEN}`) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 

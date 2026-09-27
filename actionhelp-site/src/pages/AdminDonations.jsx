@@ -1,67 +1,61 @@
-// src/pages/AdminDonations.jsx
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import styles from "./AdminDonations.module.css"; // CSS Module for styling
+import styles from "./AdminDonations.module.css";
 
 const AdminDonations = () => {
+  const [token, setToken] = useState("");
   const [donations, setDonations] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-  const fetchDonations = async () => {
+  const fetchDonations = async (event) => {
+    event.preventDefault();
+    if (!token.trim()) return;
+    setError("");
+    setLoading(true);
     try {
-      const res = await axios.get("https://supposed-nicolina-1websterfever-portfolio-01-9d79ceed.koyeb.app/api/admin/donations", {
-        headers: {
-          Authorization: "Bearer supersecrettoken123", // use your real token here
-        },
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/donations`, {
+        headers: { Authorization: `Bearer ${token.trim()}` },
       });
       setDonations(res.data);
     } catch (err) {
-      console.error("❌ Error fetching donations:", err.message);
-      setError("You are not authorized or there was a problem fetching donations.");
+      setDonations([]);
+      setError(err.response?.status === 401 ? "Invalid admin token." : "Could not load donations. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  fetchDonations();
-}, []);
-
-
   return (
-    <div className={styles.container}>
-      <h2>Admin Donation Dashboard</h2>
-      {error && <p className={styles.error}>{error}</p>}
-
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Donor</th>
-            <th>Amount</th>
-            <th>Monthly</th>
-            <th>Anonymous</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Card</th>
-            <th>Comment</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {donations.map((donation) => (
-            <tr key={donation.id}>
-              <td>{donation.firstName} {donation.lastName}</td>
-              <td>${donation.amount}</td>
-              <td>{donation.isMonthly ? "✅" : "❌"}</td>
-              <td>{donation.isAnonymous ? "✅" : "❌"}</td>
-              <td>{donation.email}</td>
-              <td>{donation.phone}</td>
-              <td>{donation.cardBrand} ****{donation.last4}</td>
-              <td>{donation.comment}</td>
-              <td>{new Date(donation.createdAt).toLocaleString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <section className={styles.container}>
+      <h1>Admin Donation Dashboard</h1>
+      <form className={styles.accessForm} onSubmit={fetchDonations}>
+        <label htmlFor="admin-token">Admin token</label>
+        <input id="admin-token" type="password" autoComplete="off" value={token}
+          onChange={(event) => setToken(event.target.value)} required />
+        <button type="submit" disabled={loading}>{loading ? "Loading…" : "View donations"}</button>
+      </form>
+      {error && <p role="alert" className={styles.error}>{error}</p>}
+      {donations.length > 0 && (
+        <div className={styles.tableScroll}>
+          <table className={styles.table}>
+            <thead><tr><th>Donor</th><th>Amount</th><th>Monthly</th><th>Anonymous</th><th>Email</th><th>Phone</th><th>Card</th><th>Comment</th><th>Date</th></tr></thead>
+            <tbody>{donations.map((donation) => (
+              <tr key={donation.id}>
+                <td>{donation.firstName} {donation.lastName}</td>
+                <td>${donation.amount}</td>
+                <td>{donation.isMonthly ? "Yes" : "No"}</td>
+                <td>{donation.isAnonymous ? "Yes" : "No"}</td>
+                <td>{donation.email}</td><td>{donation.phone}</td>
+                <td>{donation.cardBrand && donation.last4 ? `${donation.cardBrand} ****${donation.last4}` : "—"}</td>
+                <td>{donation.comment}</td>
+                <td>{new Date(donation.createdAt).toLocaleString()}</td>
+              </tr>
+            ))}</tbody>
+          </table>
+        </div>
+      )}
+    </section>
   );
 };
 
