@@ -4,6 +4,7 @@ import styles from "./Contact.module.css";
 import { useLanguage } from "../context/LanguageContext";
 import { useSearch } from "../context/SearchContext";
 import emailjs from "emailjs-com";
+import { highlightSearch } from "../highlightSearch";
 
 const Contact = () => {
   const form = useRef();
@@ -18,21 +19,7 @@ const Contact = () => {
 
   const [status, setStatus] = useState("");
 
-  useEffect(() => {
-    if (!searchTerm) return;
-    const regex = new RegExp(`(${searchTerm})`, "gi");
-    document.querySelectorAll("h1, h2, p, button, label, span").forEach((el) => {
-      if (el.children.length > 0) return;
-      el.innerHTML = el.textContent;
-      if (regex.test(el.textContent)) {
-        el.innerHTML = el.textContent.replace(
-          regex,
-          `<mark class="highlight">$1</mark>`
-        );
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    });
-  }, [searchTerm]);
+  useEffect(() => highlightSearch(document.querySelector(`.${styles.contactSection}`), searchTerm), [searchTerm]);
 
  const sendEmail = (e) => {
   e.preventDefault();

@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState, useMemo, useCallback } from "react"
 import { useLanguage } from "../context/LanguageContext";
 import { useSearch } from "../context/SearchContext";
 import styles from "./Home.module.css";
+import { highlightSearch } from "../highlightSearch";
 import TestimonialSection from "../components/TestimonialSection";
 import Newsletter from "../components/Newsletter";
 import FAQ from "../components/FAQ";
@@ -139,23 +140,8 @@ export default function Home() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // search highlight
-  useEffect(() => {
-    if (!searchTerm) return;
-    const regex = new RegExp(`(${searchTerm})`, "gi");
-    const els = document.querySelectorAll("h1, h2, h3, p, span, button, div");
-    els.forEach((el) => {
-      if (el.children.length > 0) return;
-      el.innerHTML = el.textContent;
-      if (regex.test(el.textContent)) {
-        el.innerHTML = el.textContent.replace(
-          regex,
-          `<mark class="highlight">$1</mark>`
-        );
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    });
-  }, [searchTerm]);
+  // Highlight literal text within the page without replacing React-managed HTML.
+  useEffect(() => highlightSearch(document.querySelector(`.${styles.home}`), searchTerm), [searchTerm]);
 
   // Back to Top
   const [showTop, setShowTop] = useState(false);
